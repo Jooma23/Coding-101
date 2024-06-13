@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mondrian Project</title>
+  <style>
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    #container {
+      height: 748px;
+      height: 748px;
+      display: grid;
+      grid-template-columns: 320px 198px 153px 50px;
+      grid-template-rows: 414px 130px 155px 20px;
+      gap: 9px;
+      background-color: black;
+      border-color: white;
+    }
+
+    .red {
+      background-color: #E72F24;
+      height: 414px;
+      width: 320px;
+    }
+
+    .gray1 {
+      background-color: beige;
+      grid-column: span 3;
+    }
+
+    .gray2 {
+      background-color: beige;
+      grid-row: span 2;
+    }
+
+    .gray3 {
+      background-color: beige;
+      grid-row: span 2;
+      grid-column: span 2;
+    }
+
+    .gray4 {
+      background-color: beige;
+      grid-row: span 2;
+    }
+
+    .gray5 {
+      background-color: beige;
+    }
+
+    .blue {
+      background-color: #004592;
+      border-top: 10px solid;
+      border-bottom: 10px solid;
+    }
+
+    .yellow {
+      background-color: #F9D01E;
+    }
+
+    .black {
+      background-color: #232629;
+    }
+    
+    
+    */
+  </style>
+</head>
+
+<body>
+<div id="container">
+  <div class="red box"></div>
+  <div class="gray1 gray box"></div>
+  <div class="gray2 gray box"></div>
+  <div class="gray3 gray box"></div>
+  <div class="blue box"></div>
+  <div class="gray4 gray box"></div>
+  <div class="gray5 gray box"></div>
+  <div class="yellow box"></div>
+  <div class="black box"></div>
+</div>
+</body>
+
+</html>

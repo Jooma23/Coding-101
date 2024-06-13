@@ -1,0 +1,31 @@
+body {
+    font-family:Verdana, Tahoma, sans-serif
+}
+
+h1 {
+color: navy;
+}
+
+h4 {
+color:brown;
+text-decoration: underline;
+}
+
+th {
+    border: 1px solid;
+    background-color: navy;
+    color: aliceblue;
+}
+
+td {
+    text-align: center;
+    border: 1px solid;
+    }
+
+input[type="number"] {
+    width: 80px;
+}
+
+button {
+    color: navy;
+}

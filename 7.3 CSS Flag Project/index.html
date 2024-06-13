@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Flag Project</title>
+  <style>
+
+    /* Large box */
+    .flag {
+      background-color:brown;
+      height: 600px;
+      width: 900px;
+      position: relative;
+    }
+
+    /* Text on top */
+    .flag > p {
+      color: white;
+    }
+
+    /* Blue portion */
+    .flag > div {
+      background-color: navy;
+      height: 300px;
+      width: 900px;
+      position: absolute;
+      top: 150px;
+    }
+    
+    /* Cirlce portion */
+    div > div > div {
+      background-color: white;
+      border-radius: 50%;
+      height: 200px;
+      width: 200px;
+      position: absolute;
+      left: 350px;
+      top: 50px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 5rem;
+      text-align: center;
+    }
+    
+  </style>
+</head>
+
+
+<body>
+  <div class="flag">
+    <p>The Flag</p>
+    <div>
+      <div>
+        <p>of Laos</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
