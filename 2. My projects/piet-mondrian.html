@@ -8,58 +8,60 @@
   <style>
     
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
     }
     
     #container {
-      height: 748px;
-      height: 748px;
+      height: 473px;
+      width: 473px;
       display: grid;
-      grid-template-columns: 320px 198px 153px 50px;
-      grid-template-rows: 414px 130px 155px 20px;
-      gap: 9px;
+      grid-template-columns: 202px 125px 97px 32px;
+      grid-template-rows: 262px 82px 98px 13px;
+      gap: 6px;
       background-color: black;
       border-color: white;
     }
 
+    .img {
+      height: 473px;
+      width: 473px;
+    }
+
     .red {
-      background-color: #E72F24;
-      height: 414px;
-      width: 320px;
+      background-color: #ff0101;
+      height: 262px;
+      width: 202px;
     }
 
     .gray1 {
-      background-color: beige;
+      background-color: #f9f9f9;
       grid-column: span 3;
     }
 
     .gray2 {
-      background-color: beige;
+      background-color: #f9f9f9;
       grid-row: span 2;
     }
 
     .gray3 {
-      background-color: beige;
+      background-color: #f9f9f9;
       grid-row: span 2;
       grid-column: span 2;
     }
 
     .gray4 {
-      background-color: beige;
+      background-color: #f9f9f9;
       grid-row: span 2;
     }
 
     .gray5 {
-      background-color: beige;
+      background-color: #f9f9f9;
     }
 
     .blue {
       background-color: #004592;
-      border-top: 10px solid;
-      border-bottom: 10px solid;
+      border-top: 2px solid;
+      border-bottom: 2px solid;
     }
 
     .yellow {
@@ -76,7 +78,10 @@
 </head>
 
 <body>
-<div id="container">
+  <p>This is Peter Mondrian's piece that sold for $50 million:</p>
+  <img class="img" src="./Assets/original.jpeg">
+  <p>This is my recreation using CSS Grid</p>
+  <div id="container">
   <div class="red box"></div>
   <div class="gray1 gray box"></div>
   <div class="gray2 gray box"></div>
