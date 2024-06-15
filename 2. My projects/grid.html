@@ -10,6 +10,18 @@
             width: 100%;
         }
 
+        h1 {
+            font-size: large;
+            margin-left: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 10px;
+        }
+
         .flag {
             border: 1px;
             height: 100px;
@@ -25,45 +37,105 @@
             grid-template-rows: 2;
         }
 
-        .poland {
+        .belgium {
             display: grid;
-            grid-template-columns: 1;
-            grid-template-rows: 2;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr;
+
+        }
+
+        .belgium > .column1 {
+            grid-column-start: 1;
+            grid-column-end: 1;
+            background-color: black;
+        }
+        
+        .belgium > .column2 {
+            grid-column-start: 2;
+            grid-column-end: 2;
+            background-color: rgb(250, 224, 66);
+        }
+
+        .belgium > .column3 {
+            grid-column-start: 3;
+            grid-column-end: 3;
+            background-color: rgb(237, 41, 57);
+        }
+
+        .finland {
+            display: grid;
+            grid-template-columns: 1fr .5fr 2fr;
+            grid-template-rows: 1fr .5fr 1fr;        
+        }
+
+        .finland > .row1 {
+            grid-column-start: 2;
+            grid-column-end: 2;      
+            background-color: rgb(0, 53, 128);
+        }
+
+        .finland > .row2 {
+            grid-column-start: 1;
+            grid-column-end: 4;  
+            grid-row-start: 2;    
+            background-color: rgb(0, 53, 128);
+        }
+
+        .finland > .row3 {
+            grid-column-start: 2;
+            grid-column-end: 2;      
+            background-color: rgb(0, 53, 128);
+        }
+
+        .swiss {
+            background-color: rgb(255, 0, 0);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        }
+
+        .swiss > .plus {
+            grid-column-start: 3;
+            grid-row-start: 2;
+            grid-row-end: span 3;
+            background-color: white;
+        }
+
+        .swiss > .minus {
+            grid-column-start: 2;
+            grid-column-end: span 3;
+            grid-row-start: 3;
+            background-color: white;
         }
 
 
     </style>
 </head>
 <body>
-    <h1>Here are the flags of Poland, Japan, Belgium, Finland, and Switzerland</h1>
-    Poland:
-    <div class="poland flag">
-        <div></div>
-        <div style="background-color: rgb(220, 20, 60);"></div>
-    </div>
-    <br>Japan:
-    <div class="japan flag">
-        <div></div>
-        <div></div>
-    </div>
-    <br>Belgium:
-    <div class="belgium flag">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-    <br>Finland:
-    <div class="finland flag">
-        <div></div>
-        <div></div>
-    </div>
-    <br>Switzerland:
-    <div class="swiss flag">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+    <h1>Here are the flags of Poland, Belgium, Finland, and Switzerland</h1>
+    <div class="container">
+        Poland:
+        <div class="poland flag">
+            <div></div>
+            <div style="background-color: rgb(220, 20, 60);"></div>
+        </div>
+        <br>Belgium:
+        <div class="belgium flag">
+            <div class="column1"></div>
+            <div class="column2"></div>
+            <div class="column3"></div>
+        </div>
+        <br>Finland:
+        <div class="finland flag">
+            <div class="row1"></div>
+            <div class="row2"></div>
+            <div class="row3"></div>
+        </div>
+        <br>Switzerland:
+        <div class="swiss flag">
+            <div class="plus"></div>
+            <div class="minus"></div>
+        </div>
     </div>
 </body>
 </html>
