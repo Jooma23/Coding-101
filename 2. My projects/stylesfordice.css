@@ -9,16 +9,15 @@ body {
 }
 
 h1 {
-  margin: 30px;
+  margin-top: 15%;
   font-family: 'Lobster', cursive;
   text-shadow: 5px 0 #232931;
   font-size: 4rem;
   color: #4ECCA3;
 }
 
-
 h4 {
-  font-size: .5em;
+  font-size: 1em;
   color: white;
   font-family: "Ubuntu", sans-serif;
 }
@@ -29,7 +28,7 @@ h4 {
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: 2em;
   color: #4ECCA3;
   font-family: 'Indie Flower', cursive;
 }
