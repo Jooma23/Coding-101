@@ -60,15 +60,22 @@ function diceRoll() {
 function calcWinner() {
     if (playerOneCard > playerTwoCard) {
         document.querySelector("h3").innerHTML = "Player 1 Wins";
+        document.querySelector("button").innerHTML = "Play Again?";
     }
 
     else if (playerOneCard < playerTwoCard) {
         document.querySelector("h3").innerHTML = "Player 2 Wins";
+        document.querySelector("button").innerHTML = "Play Again?";
     }
 
     else {
         document.querySelector("h3").innerHTML = "It's a draw";
+        document.querySelector("button").innerHTML = "Play Again?";
     }
+}
+
+function reloadPage() {
+    location.reload();
 }
 
 console.log(playerOneCard);
