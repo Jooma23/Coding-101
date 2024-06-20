@@ -16,6 +16,12 @@ h1 {
   color: #4ECCA3;
 }
 
+h3 {
+  font-family: 'Lobster', cursive;
+  font-size: 2rem;
+  color: #4ECCA3;
+}
+
 h4 {
   font-size: 1em;
   color: white;
@@ -31,6 +37,15 @@ p {
   font-size: 2em;
   color: #4ECCA3;
   font-family: 'Indie Flower', cursive;
+}
+
+.btn {
+  font-size: 2em;
+  color: coral;
+  background-color: black;
+  border-color: white;
+  border-style: dotted;
+  margin: 5%;
 }
 
 img {

@@ -12,15 +12,17 @@
   <body>
     <div class="container">
       <h1>Random Dice Game</h1>
-      <h4>Expected behavior: Everything is centered. Clicking the "roll" button leads to two dice (one for each player) being randomly generated. The Player that with the higher die wins, and a h3 element is injected, presenting the result.</h4> 
+      <h3></h3>
+      <h4>Expected behavior: Everything is centered. Clicking the "roll" button leads to two dice (one for each player) being randomly generated. The Player that with the higher die wins, and a currently-hidden h3 element is made visible, presenting the result.</h4> 
       <div class="dice">
         <p>Player 1</p>
-        <img class="img1" src="./images/dice1.png"/>
+        <img id="img1" src=" " onclick="calcWinner()"/>
       </div>
       <div class="dice">
         <p>Player 2</p>
-        <img class="img2" src="./images/dice2.png"/>
+        <img id="img2" src=" "/>
       </div>
+      <br><button class="btn" onclick="diceRoll()">ROLL THE DICE</button>  
     </div>
     <footer><a href="https://jooma.app">jooma.app</footer>
     <script type="text/javascript" src="./dice.js"></script>
