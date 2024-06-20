@@ -41,12 +41,19 @@ p {
 
 .btn {
   font-size: 2em;
+  opacity: 20%;
   color: coral;
   background-color: black;
-  border-color: white;
+  border-style: none;
+  margin: 5%;
+}
+
+.btn:hover {
+  cursor: pointer;
+  opacity: 100%;
   border-style: dotted;
   border-color: #4ECCA3;
-  margin: 5%;
+  transition: 900ms;
 }
 
 img {
