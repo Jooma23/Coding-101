@@ -1,1 +1,1 @@
-document.querySelector("button").click = "alert('it works!')";
+// document.querySelector("button").click = alert("it works");

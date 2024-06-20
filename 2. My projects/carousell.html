@@ -9,26 +9,8 @@
         body {
             background-color: black;
             color: white;
-        }
-
-        h1 {
-            position: fixed;
-            top: 0;
-            left: 5%;
-        }
-        
-        p {
-            position: fixed;
-            top: 80px; 
-            margin-left: 5%;
-        }
-
-        .img-track {
-            display: flex;
-            gap: 6vw;
-            flex-wrap: nowrap;
-            margin-left: 5%;
-            margin-top: 300px;
+            height: 100%;
+            width: 100%;
         }
 
         .box {
@@ -38,33 +20,55 @@
             filter: grayscale();
         }
 
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header {
+            flex-grow: 1;
+        }
+
+        .img-track {
+            display: flex;
+            gap: 6vw;
+            max-width: 100%;
+            flex-wrap: nowrap;
+        }
+
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>What you should see</h1>
-    <p>A responsive site. With the header and paragaph on top, followed by a scrollable carousell of Babka images. All text should be fixed and NOT move, while you scroll through the image track. Images are the same sizes and grayscaled, with some repeats.</p>
-    <div class="img-track">
-        <div><img class="box" src="./Assets/img1.jpeg"></div>
-        <div><img class="box" src="./Assets/img2.jpg"></div>
-        <div><img class="box" src="./Assets/img3.jpg"></div>
-        <div><img class="box" src="./Assets/img4.jpeg"></div>
-        <div><img class="box" src="./Assets/img5.jpeg"></div>
-        <div><img class="box" src="./Assets/img6.jpeg"></div>
-        <div><img class="box" src="./Assets/img7.jpg"></div>
-        <div><img class="box" src="./Assets/img8.jpg"></div>
-        <div><img class="box" src="./Assets/img9.jpeg"></div>
-        <div><img class="box" src="./Assets/img1.jpeg"></div>
-        <div><img class="box" src="./Assets/img2.jpg"></div>
-        <div><img class="box" src="./Assets/img3.jpg"></div>
-        <div><img class="box" src="./Assets/img4.jpeg"></div>
-        <div><img class="box" src="./Assets/img5.jpeg"></div>
-        <div><img class="box" src="./Assets/img6.jpeg"></div>
-        <div><img class="box" src="./Assets/img7.jpg"></div>
-        <div><img class="box" src="./Assets/img8.jpg"></div>
-        <div><img class="box" src="./Assets/img9.jpeg"></div>
+    <div class="everything">
+        <div class="content">
+            <h1 class="header">What you should see</h1>
+            <p class="subcopy">A responsive site. With the header and paragaph on top, followed by a scrollable carousell of Babka images. All text should be fixed and NOT move, while you scroll through the image track. Images are the same sizes and grayscaled, with some repeats.</p>
+            <div class="img-track">
+                <div><img class="box" src="./Assets/img1.jpeg"></div>
+                <div><img class="box" src="./Assets/img2.jpg"></div>
+                <div><img class="box" src="./Assets/img3.jpg"></div>
+                <div><img class="box" src="./Assets/img4.jpeg"></div>
+                <div><img class="box" src="./Assets/img5.jpeg"></div>
+                <div><img class="box" src="./Assets/img6.jpeg"></div>
+                <div><img class="box" src="./Assets/img7.jpg"></div>
+                <div><img class="box" src="./Assets/img8.jpg"></div>
+                <div><img class="box" src="./Assets/img9.jpeg"></div>
+                <div><img class="box" src="./Assets/img1.jpeg"></div>
+                <div><img class="box" src="./Assets/img2.jpg"></div>
+                <div><img class="box" src="./Assets/img3.jpg"></div>
+                <div><img class="box" src="./Assets/img4.jpeg"></div>
+                <div><img class="box" src="./Assets/img5.jpeg"></div>
+                <div><img class="box" src="./Assets/img6.jpeg"></div>
+                <div><img class="box" src="./Assets/img7.jpg"></div>
+                <div><img class="box" src="./Assets/img8.jpg"></div>
+                <div><img class="box" src="./Assets/img9.jpeg"></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
