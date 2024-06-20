@@ -5,8 +5,7 @@ var dice4 = "./images/dice4.png";
 var dice5 = "./images/dice5.png";
 var dice6 = "./images/dice6.png";
 
-
-var apple = 3;
+var randomNumber = (Math.floor(Math.random() * 6) + 1);
 
 function diceRoll() {
     document.querySelector("#img1").src = dice2;
@@ -14,11 +13,11 @@ function diceRoll() {
 }
 
 function calcWinner() {
-    if (apple < 3) {
+    if (randomNumber < 3) {
         document.querySelector("h3").innerHTML = "Player 1 Wins";
     }
 
-    else if (apple > 3) {
+    else if (randomNumber > 3) {
         document.querySelector("h3").innerHTML = "Player 2 Wins";
     }
 
@@ -26,6 +25,7 @@ function calcWinner() {
         document.querySelector("h3").innerHTML = "It's a draw";
     }
 }
+
 
 
 /* 
@@ -38,8 +38,8 @@ Steps to take:
     else if b, b
     else       draw)
 4. Change Inner HTML element to display the winner - done
-5. Change static > random 
-6. Change "on-load" to button 
-x. Clear the dice to start
+5. Change static > random - done
+6. Change "on-load" to button - done
+x. Clear the dice to start - done
 
 */
