@@ -1,9 +1,9 @@
-var dice1 = "http://127.0.0.1:3000/2.%20My%20projects/images/dice1.png";
-var dice2 = "http://127.0.0.1:3000/2.%20My%20projects/images/dice2.png";
-var dice3 = "http://127.0.0.1:3000/2.%20My%20projects/images/dice3.png";
-var dice4 = "http://127.0.0.1:3000/2.%20My%20projects/images/dice4.png";
-var dice5 = "http://127.0.0.1:3000/2.%20My%20projects/images/dice5.png";
-var dice6 = "http://127.0.0.1:3000/2.%20My%20projects/images/dice6.png";
+var dice1 = "./images/dice1.png";
+var dice2 = "./images/dice2.png";
+var dice3 = "./images/dice3.png";
+var dice4 = "./images/dice4.png";
+var dice5 = "./images/dice5.png";
+var dice6 = "./images/dice6.png";
 
 
 var apple = 3;
