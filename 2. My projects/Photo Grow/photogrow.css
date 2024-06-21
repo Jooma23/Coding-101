@@ -25,4 +25,15 @@ body {
     border-style: dashed;
     border-width: 2px;
     margin: 5px;
+    overflow: auto;
+    text-align: center;
+}
+
+.box:hover {
+    height: 200px;
+    width: 200px;
+    border-color: aqua;
+    border-style: dashed;
+    border-width: 2px;
+    margin: 5px;
 }
