@@ -2,7 +2,8 @@
 
 /*
 
-> Put event listeners on all boxes;
-> When a box is clicked, return it's #id;
-> print the id to the console;
-> add styling to that id;
+> Put event listeners on all boxes (click);
+> When a box is clicked, return it's repective #id;
+> print the id to the console.log;
+> add styling to that id and general styling;
+> play with styling;
