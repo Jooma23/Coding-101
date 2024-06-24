@@ -10,28 +10,53 @@
     <header>
         <!-- <img> -->
         <h1>Features I want</h1>
+        <button>Post a Feature</button>
     </header>
+    <form>
+        <input type="text" id="description" placeholder="Description"/>
+        <span>char</span>
+        <input type="text" id="screenshot" placeholder="Screenshot link"/>
+        <select type="text" id="category">
+            <option value="">Category</option>
+            <option value="safety">Safety</option>
+            <option value="UX">UX</option>
+            <option value="General">General</option>
+        </select>
+        <button>Submit</button>
+    </form>
     <main>
-        <button>All</button>
-        <button>Safety</button>
-        <button>UX Related</button>
-        <button>Missing Court</button>
-        <ul>
-            <li>
-                <p>The Queue, and this is a description of the queue
-                <a href="jooma.app">link to a screenshot</a>
-                <span>*UX Related*</span>
-                </p>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <p>The Queue, and this is a description of the queue
-                <a href="jooma.app">link to a screenshot</a>
-                <span>*UX Related*</span>
-                </p>
-            </li>
-        </ul>
+        <aside>
+            <ul>
+                <li><button>All</button></li>
+                <li><button>Safety</button></li>
+                <li><button>UX</button></li>
+                <li><button>General Feedback</button></li>
+            </ul>
+        </aside>
+        <section>    
+            <ul>
+                <li>
+                    <p>The Queue, and this is a description of the queue
+                    <a href="jooma.app">link to a screenshot</a>
+                    <span>*UX Related*</span>
+                    </p>
+                    <div class="voting">
+                    <button>👍 upvote</button>
+                    <button>👎 downvote</button>
+                    </div>
+                </li>
+                <li>
+                    <p>The Queue, and this is a description of the queue
+                    <a href="jooma.app">link to a screenshot</a>
+                    <span>*UX Related*</span>
+                    </p>
+                    <div class="voting">
+                        <button>👍 upvote</button>
+                        <button>👎 downvote</button>
+                    </div>
+                </li>
+            </ul>
+        </section>
     </main>
     <script src="./voting.js"></script>
 </body>
