@@ -60,17 +60,17 @@ function diceRoll() {
 function calcWinner() {
     if (playerOneCard > playerTwoCard) {
         document.querySelector("h3").innerHTML = "Player 1 Wins";
-        document.querySelector("button").innerHTML = "Play Again?";
+        document.querySelector("button").innerHTML = "Play Again? Hit Refresh";
     }
 
     else if (playerOneCard < playerTwoCard) {
         document.querySelector("h3").innerHTML = "Player 2 Wins";
-        document.querySelector("button").innerHTML = "Play Again?";
+        document.querySelector("button").innerHTML = "Play Again? Hit Refresh";
     }
 
     else {
         document.querySelector("h3").innerHTML = "It's a draw";
-        document.querySelector("button").innerHTML = "Play Again?";
+        document.querySelector("button").innerHTML = "Play Again? Hit Refresh";
     }
 }
 
@@ -80,6 +80,7 @@ function reloadPage() {
 
 console.log(playerOneCard);
 console.log(playerTwoCard);
+
 
 /* 
 

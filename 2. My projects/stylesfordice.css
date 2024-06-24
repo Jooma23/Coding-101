@@ -41,10 +41,10 @@ p {
 
 .btn {
   font-size: 2em;
-  opacity: 20%;
+  opacity: 90%;
   color: coral;
   background-color: black;
-  border-style: none;
+  border-style: dotted;
   margin: 5%;
 }
 
