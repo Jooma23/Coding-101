@@ -1,6 +1,7 @@
 <!-- Game plan
 
 > Level up the functions. Many actions done on add, remove, and clicking
+> Add elements like trash and checkbox - done 
 > Create fn for adding task - done 
 > Create fn for removing task - 
 > Create fn (or just styling) for clicking task (aka strikethrough) - 
@@ -15,27 +16,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-do list app</title>
     <style>
+        
+        /* General styling */ 
+        
         body {
             background-color: black;
+            font-family: "Noto Znamenny Musical Notation", sans-serif;
         }
 
         .container {
             background-color: maroon;
+            max-width: 60%;
+            max-height: 60%;
+            margin: auto;
+            padding: 15px;
+            border-radius: 15%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Element specific styling */
+
+        h1 {
+            font-size: 2em;
+        }
+
+        ul {
+            list-style: none;
+            font-size: 1.2em;
+            padding: 0;
+        }
+
+        li {
+            line-height: 40px;
         }
 
 
-
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Znamenny+Musical+Notation&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <img src="./bizcat.png" height="60px" width="60px">
-        <h1>To-do list</h1>
-        <input type="text"/>
-        <button>Add Task</button> 
-        <ul>
-            <li>List item 1</li>
-        </ul>
+        <div class="rowone">
+            <img src="./bizcat.png" height="40px" width="40px">
+            <h1>To-do list</h1>
+        </div>
+        <div class="rowtwo">
+            <input type="text"/>
+            <button>Add Task</button>
+        </div>
+        <ul><li>List item 1</li></ul>
     </div>
     <script>
 
