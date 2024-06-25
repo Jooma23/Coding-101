@@ -1,1 +1,0 @@
-// document.querySelector("button").click = alert("it works");

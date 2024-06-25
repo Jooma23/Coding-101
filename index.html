@@ -8,34 +8,44 @@
 
         body {
             background-color: black;
+            font-family: Mukta;
+            color: white;
         }
 
         h1 {
-            color: white;
-            font-family: Mukta;
-            margin: 0;
+            text-align: center;
         }
 
         .container {
             display: flex;
-            flex-direction: column;
-            width: 80%;
-            height: 80%;
-            padding-left: 10%;          
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
 
-        .header {
-            font-family: Mukta;
-            font-size: 1.5em;
-            border-style: dotted;
+        ul {
+            border: 2px;
+            padding: 10px;
             border-color: white;
-            padding: 3%;
+            border-style: dashed;
+            margin: auto;
         }
 
-        .subcopy {
-            font-size: .6em;
+        li {
+            list-style-type: none;
+            font-size: 1.5em;
+            color: darkgoldenrod;
+        }
+
+        a {
+            text-decoration: none;
             color: white;
         }
+
+        ul:hover {
+            border-color: blue;
+            transition: 1s;
+        } 
 
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,32 +54,14 @@
 </head>
 <body>
 <div>
+    <h1>My Learnings From Class</h1>
     <div class="container">
-        <h1>Project List</h1>
-        <div><p class="header">
-            <a href="./2. My projects/v0.html" style="text-decoration: none; color: yellow;">1. Learn HTML<span class="subcopy"><br>Project: Make a non-functional retirement calc with HMTL</span></a>
-        </p></div>
-        <div><p class="header">
-            <a href="./2. My projects/piet-mondrian.html" style="text-decoration: none; color: yellow;">2. Learn CSS Layouts<span class="subcopy"><br>Project: Copy Piet Mondrian's artpiece</a>
-        </p></div>
-        <div><p class="header">
-            <a href="./2. My projects/carousell.html" style="text-decoration: none; color: yellow;">3: Learn CSS Flexbox<span class="subcopy"><br>Project: Make a website with scrollable images</a>
-        </p></div>
-        <div><p class="header">
-            <a href="./2. My projects/grid.html" style="text-decoration: none; color: yellow;">4: Learn CSS Grid<span class="subcopy"><br>Project: Make several countries flags from scratch</a>
-        </p></div>
-        <div><p class="header">
-            <a href="./2. My projects/jspractice.html" style="text-decoration: none; color: yellow;">5: Intro to javascript<span class="subcopy"><br>Project: Make a button click do something</a>
-        </p></div>
-        <div><p class="header">
-            <a href="./2. My projects/dice.html" style="text-decoration: none; color: yellow;">5: Apply javascript<span class="subcopy"><br>Project: Make a dumb game</a>
-        </p></div>
-        <div><p class="header">
-            <a href="./2. My projects/Photo Grow/photogrow.html" style="text-decoration: none; color: yellow;">6: Learn about transitions<span class="subcopy"><br>Make boxes grow and shrink.</a>
-        </p></div>
-        <div><p class="header">
-            <a href="./2. My projects/Voting Project/index.html" style="text-decoration: none; color: yellow;">7: Advanced javascript<span class="subcopy"><br>Project: to-do list</a>
-        </p></div>
+        <a href="./learnhtml/v0.html"><ul><li>Basic HTML</li><br>Project: Make a non-functional form online<br></ul></a>
+        <a href="./learnCSS/piet-mondrian.html"><ul><li>CSS Layouts</li><br>Project: Copy Piet Mondarian's art<br></ul></a>
+        <a href="./learnFlexbox/carousell.html"><ul><li>CSS Flexbox</li><br>Project: A website with scrollable images<br></ul></a>
+        <a href="./learnGrid/grid.html"><ul><li>CSS Grid</li><br>Project: Replicate various country flags<br></ul></a>
+        <a href="./jsintro/jspractice.html"><ul><li>Intro javascript</li><br>Project: Make a button work<br></ul></a>
+        <a href="./jsintermediate/dice.html"><ul><li>Intermediate javascript</li><br>Project: Make a dice game<br></ul></a>
     </div>
 </div>
 </body>
