@@ -5,14 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board for voting</title>
     <link href="./votingstyles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Znamenny+Musical+Notation&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <!-- <img> -->
-        <h1>Features I want</h1>
-        <button>Post a Feature</button>
+        <div class="header">
+                <img src="./bizcat.jpeg" height="40px" width="40px">
+                <h1>Feature Board</h1>
+            <button>Post</button>
+        </div>
     </header>
-    <form>
+    <form class="topbox">
         <input type="text" id="description" placeholder="Description"/>
         <span>char</span>
         <input type="text" id="screenshot" placeholder="Screenshot link"/>
@@ -35,24 +41,24 @@
         </aside>
         <section>    
             <ul>
-                <li>
+                <li class="featurebox">
                     <p>The Queue, and this is a description of the queue
                     <a href="jooma.app">link to a screenshot</a>
-                    <span>*UX Related*</span>
                     </p>
+                    <span class="category">*UX Related*</span>
                     <div class="voting">
-                    <button>👍 upvote</button>
-                    <button>👎 downvote</button>
+                    <button>👍 up</button>
+                    <button>👎 down</button>
                     </div>
                 </li>
-                <li>
-                    <p>The Queue, and this is a description of the queue
+                <li class="featurebox">
+                    <p>A second piece of feedback, and its description
                     <a href="jooma.app">link to a screenshot</a>
-                    <span>*UX Related*</span>
                     </p>
+                    <span class="category">*UX Related*</span>
                     <div class="voting">
-                        <button>👍 upvote</button>
-                        <button>👎 downvote</button>
+                        <button>👍 up</button>
+                        <button>👎 down</button>
                     </div>
                 </li>
             </ul>

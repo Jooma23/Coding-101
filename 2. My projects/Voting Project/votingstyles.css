@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Znamenny Musical Notation", sans-serif;
+}
+
+body {
+    background-color:dimgrey;
+}
+
+main {
+    display: grid;
+    grid-template-columns: auto 5fr;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 3%;
+}
+
+.logo {
+    display: flex;
+}
+
+img {
+    border-radius: 8%;
+}
+
+h1 {
+    color: maroon;
+    font-size: 2em;
+}
+
+.featurebox {
+    border: 2px;
+    border-style: dotted;
+    border-style: dotted;
+    margin-top: 10px;
+    font-size: .75em;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.category {
+    color: navy;
+}
+
+a {
+    text-decoration: none;
+}
+
+.topbox {
+    margin: 20px;
+}
+
+span {
+    /* background-color: navy; */
+}
+
+
+.voting {
+    margin: auto;
+}
