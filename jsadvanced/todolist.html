@@ -5,20 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-do list app</title>
     <style>
+        body {
+            background-color: black;
+        }
+
         .container {
             background-color: maroon;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: 1fr 1fr 1fr;
         }
+
+
+
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="./bizcat.png" height="40px" width="40px">
+        <img src="./bizcat.png" height="60px" width="60px">
         <h1>To-do list</h1>
-        <input type="text" value="Add your task"/>
+        <input type="text"/>
         <button>Add Task</button> 
+        <ul>
+            <li>List item 1</li>
+            <li>List item 2</li>
+        </ul>
     </div>
     <script>
-        // alert("testing");
+
+        let inputVar = document.querySelector("input");   
+        let buttonVar = document.querySelector("button");
+        let listVar = document.querySelector("ul");
+        let newLi = document.createElement("li");
+
+        buttonVar.addEventListener("click", addTask);
+        
+        function addTask() {
+            console.log("Button pressed, and");
+            let userInput = inputVar.value;  
+
+            if (inputVar.value == "") {
+                alert("Add a task");
+                console.log("User tried empty submission");
+            }
+                else {
+                console.log("Task added");
+                listVar.appendChild(newLi);
+                newLi.innerHTML = userInput;
+                inputVar.value = "";
+            }
+        }
+
     </script>
 </body>
 </html>
