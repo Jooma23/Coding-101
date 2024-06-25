@@ -1,3 +1,13 @@
+<!-- Game plan
+
+> Level up the functions. Many actions done on add, remove, and clicking
+> Create fn for adding task - done 
+> Create fn for removing task - 
+> Create fn (or just styling) for clicking task (aka strikethrough) - 
+> Style everything better - 
+> Add transitions and sounds for beauty -
+> Boss level, add image animation for adding and removing -   -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +21,6 @@
 
         .container {
             background-color: maroon;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            grid-template-rows: 1fr 1fr 1fr;
         }
 
 
@@ -28,7 +35,6 @@
         <button>Add Task</button> 
         <ul>
             <li>List item 1</li>
-            <li>List item 2</li>
         </ul>
     </div>
     <script>
@@ -36,26 +42,26 @@
         let inputVar = document.querySelector("input");   
         let buttonVar = document.querySelector("button");
         let listVar = document.querySelector("ul");
-        let newLi = document.createElement("li");
+        // let newLi = document.createElement("li");
 
         buttonVar.addEventListener("click", addTask);
-        
+
         function addTask() {
             console.log("Button pressed, and");
             let userInput = inputVar.value;  
 
-            if (inputVar.value == "") {
-                alert("Add a task");
-                console.log("User tried empty submission");
-            }
-                else {
-                console.log("Task added");
-                listVar.appendChild(newLi);
-                newLi.innerHTML = userInput;
-                inputVar.value = "";
-            }
+                if (inputVar.value == "") {
+                    console.log("Add a task");
+                    console.log("User tried empty submission");
+                }
+                    else {
+                    console.log("Task added");
+                    let newLi = document.createElement("li");
+                    newLi.innerHTML = userInput;
+                    listVar.appendChild(newLi);
+                    inputVar.value = "";
+                }
         }
-
     </script>
 </body>
 </html>
