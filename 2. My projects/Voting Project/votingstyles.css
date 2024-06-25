@@ -1,3 +1,5 @@
+/* General Styling */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,9 +11,30 @@ body {
     background-color:dimgrey;
 }
 
+.container {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.pills {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Limited mobile stuff */
+
+@media (max-width: 1200px) {
+    .featurebox {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 5px;
+    }
+}
+
 main {
     display: grid;
-    grid-template-columns: auto 5fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
 }
 
 .header {
@@ -21,9 +44,18 @@ main {
     margin: 3%;
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 50vh;
+}
+
 .logo {
     display: flex;
 }
+
+/* Element Styling */
 
 img {
     border-radius: 8%;
@@ -58,13 +90,19 @@ a {
 
 .topbox {
     margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 span {
     /* background-color: navy; */
 }
 
-
 .voting {
     margin: auto;
+}
+
+li {
+    list-style-type: none;
 }
