@@ -30,7 +30,7 @@
             max-height: 60%;
             margin: auto;
             padding: 15px;
-            border-radius: 15%;
+            border-radius: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -46,10 +46,16 @@
             list-style: none;
             font-size: 1.2em;
             padding: 0;
+            /* width: 100%; */
         }
 
         li {
-            line-height: 40px;
+            width: 100vw;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .checkbox {
         }
 
 
@@ -68,32 +74,54 @@
             <input type="text"/>
             <button>Add Task</button>
         </div>
-        <ul><li>List item 1</li></ul>
+        <ul>
+
+        </ul>
     </div>
     <script>
 
         let inputVar = document.querySelector("input");   
         let buttonVar = document.querySelector("button");
         let listVar = document.querySelector("ul");
-        // let newLi = document.createElement("li");
 
         buttonVar.addEventListener("click", addTask);
 
         function addTask() {
-            console.log("Button pressed, and");
+            console.log("Submit pressed, and");
             let userInput = inputVar.value;  
 
-                if (inputVar.value == "") {
-                    console.log("Add a task");
+                if (userInput == "") {
                     console.log("User tried empty submission");
                 }
                     else {
                     console.log("Task added");
                     let newLi = document.createElement("li");
-                    newLi.innerHTML = userInput;
+                    
+                    //Adding a span element, adding the class, and adding the check icon
+                    let firstSpan = document.createElement("span");
+                    firstSpan.classList.add("checkbox");
+                    firstSpan.innerText = "o";
+
+                    //Adding a span element, adding the class, and adding the trash icon
+                    let secondSpan = document.createElement("span");
+                    secondSpan.classList.add("trash");
+                    secondSpan.innerText = "🗑️";
+
+                    // Combining everything into one
+                    newLi.appendChild(firstSpan);
+                    newLi.appendChild(new Text(userInput));
+                    newLi.appendChild(secondSpan);
+
+                    // Adding it to the <ul>
                     listVar.appendChild(newLi);
                     inputVar.value = "";
+
                 }
+        }
+
+        function deleteTask() {
+            console.log("Trash pressed, and");
+            console.log("Task deleted");
         }
     </script>
 </body>
