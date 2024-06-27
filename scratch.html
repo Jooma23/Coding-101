@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects</title>
+    <title>To do list</title>
     <style>
 
         body {
-
+            display: flex;
+            justify-content: center;
         }
 
         img {
@@ -16,15 +17,20 @@
         }
 
         .container {
-            border: 2px solid white;
+            max-width: 900px;
+            border: 2px solid red;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10%;
+            margin-left: 10%;
+            margin-right: 10%;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            grid-template-rows: 1fr 1fr 1fr;
-            /* grid-auto-flow: column; Need to figure out how to expand grid downwards on demand. Either via changing the row size, or a native expansion attribute */
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 1fr 1fr auto;
             grid-template-areas: 
                 "header header header logo"
                 "input input input button"
-                "checkbox textbox textbox trash";
+                "footer footer footer footer";
         }
 
         h1 {
@@ -41,33 +47,31 @@
 
         input {
             grid-area: input;
+            border-radius: 40px;
+            height: 70%;
         }
 
         button {
             grid-area: button;
-        }
-
-        .listitem {
-            grid-column-start: 1;
-            grid-column-end: 5;
-            grid-row-start: 3;
-            grid-row-end: 3;
+            border-radius: 40px;
+            height: 70%;
         }
         
-        .checkbox {
-            grid-area: checkbox;
-            justify-self: center;
+        .listItems {
+            grid-area: footer;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: auto;
+        }
+
+        .checkbox, .trash {
             align-self: center;
+            justify-self: center;
         }
 
         p {
-            grid-area: textbox;
-        }
-        
-        .trash {
-            grid-area: trash;
-            justify-self: center;
             align-self: center;
+            justify-self: flex-start;
         }
 
     </style>
@@ -75,13 +79,29 @@
 </head>
 <body>
 <div class= "container">
-    <h1>Header</h1>
+    <h1>To do list</h1>
     <img class="logo" src="./jsadvanced/bizcat.png">
     <input type="text">
     <button>Add</button>
-    <img class="checkbox" src="./jsadvanced/bizcat.png">
-    <p>list item list item list item list item list item list item list item list item list item list item list item </p>
-    <img class="trash" src="./jsadvanced/bizcat.png">
+    <div class="listItems">
+        <img class="checkbox" src="./jsadvanced/bizcat.png">
+        <p>list item one that has two lines that should wrap on mobile</p>
+        <img class="trash" src="./jsadvanced/bizcat.png">
+        <img class="checkbox" src="./jsadvanced/bizcat.png">
+        <p>list item two, single line</p>
+        <img class="trash" src="./jsadvanced/bizcat.png">
+        <img class="checkbox" src="./jsadvanced/bizcat.png">
+        <p>list item one list item one list item one </p>
+        <img class="trash" src="./jsadvanced/bizcat.png">
+        <img class="checkbox" src="./jsadvanced/bizcat.png">
+        <p>list item two</p>
+        <img class="trash" src="./jsadvanced/bizcat.png">
+    </div>
 </div>
+<script>
+    console.log("this working");
+</script>
+
+
 </body>
 </html>
