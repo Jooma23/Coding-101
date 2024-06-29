@@ -99,7 +99,57 @@
     </div>
 </div>
 <script>
-    console.log("this working");
+    
+    // Defining all clickable elements: 
+    // let buttonVar = document.querySelector("button");
+    // let trashVar = document.querySelectorAll(".trash")[0];
+    // let checkboxVar = document.querySelectorAll(".checkbox")[0];
+
+    
+    // function addRow() {
+    //     console.log("click detected");
+    //     console.log(this);
+    // }
+
+    // Loop to gather the specific row being clicked
+    // for (var i = 0; i < 7; i++) {
+    //     document.querySelectorAll(".trash")[i].addEventListener("click", function () {
+    //         console.log(this);
+    //     });
+    // }
+
+    for (var i = 0; i < 20; i++) {
+        document.querySelectorAll(".trash")[i].addEventListener("click", function () {
+            console.log(this);
+        });
+        document.querySelectorAll(".checkbox")[i].addEventListener("click", function () {
+            console.log(this);
+        });
+        document.querySelectorAll("button")[i].addEventListener("click", function () {
+            console.log(this);
+        });
+    }
+
+
+
+    
+    // Adding all click events
+    // buttonVar.addEventListener("click", addRow);
+    // checkboxVar.addEventListener("click", addRow);
+    
+
+
+
+        // Three things to add per click
+        // <img class="checkbox" src="./jsadvanced/bizcat.png">
+        // <p>list item one that has two lines that should wrap on mobile</p>
+        // <img class="trash" src="./jsadvanced/bizcat.png">
+
+
+
+
+
+
 </script>
 
 
