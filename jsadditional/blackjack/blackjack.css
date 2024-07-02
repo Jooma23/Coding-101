@@ -3,9 +3,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 60vw;
-    height: 60vh;
+    width: 80vw;
+    height: 50vh;
     border: 1px solid black;
+    background-color: dimgrey;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .middlebox {
@@ -17,4 +20,21 @@ body {
 .card {
     border: 1px dotted;
     display: inline;
+    font-size: 2em;
+}
+
+button {
+    margin: 5px;
+    height: 30px;
+    width: 180px;
+    cursor: pointer;
+}
+
+.playerbox, .dealerbox {
+    display: flex;
+    flex-direction: column;
+}
+
+.playerscard, .dealerscard, p, h2 {
+    align-self: center;
 }
