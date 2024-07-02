@@ -8,18 +8,11 @@ let playerCardTwo = document.querySelectorAll(".player")[1];
 let dealerCardOne = document.querySelectorAll(".dealer")[0];
 let dealerCardTwo = document.querySelectorAll(".dealer")[1];
 
+let playerCards = [];
+let dealerCards = [];
 
-// Generate first state on document load
-// There has to be a way to refactor this using the newGame() on doc load
-dealerCardOne.innerHTML = (Math.floor(Math.random()*deck.length) + 1);
-dealerCardTwo.innerHTML = (Math.floor(Math.random()*deck.length) + 1);
-document.querySelector(".dealertotal").innerHTML = "Dealer total: " + (parseInt(dealerCardOne.innerHTML) + parseInt(dealerCardTwo.innerHTML));
-
-playerCardOne.innerHTML = (Math.floor(Math.random()*deck.length) + 1);
-playerCardTwo.innerHTML = (Math.floor(Math.random()*deck.length) + 1);
-document.querySelector(".playertotal").innerHTML = "Player total: " + (parseInt(playerCardOne.innerHTML) + parseInt(playerCardTwo.innerHTML));
-
-
+// On document load, assume new game
+newGame();
 
 // Hit listener and fn; it adds the rando card, class and appends it
 hitButton.addEventListener("click", hitMe)
@@ -42,23 +35,34 @@ function hitMe() {
 // NewGame listener and fn; it adds the rando card, class and appends it
 newGameButton.addEventListener("click", newGame);
 function newGame() {
-    dealerCardOne.innerHTML = (Math.floor(Math.random()*deck.length) + 1);
-    dealerCardTwo.innerHTML = (Math.floor(Math.random()*deck.length) + 1);
-    document.querySelector(".dealertotal").innerHTML = "Dealer total: " + (parseInt(dealerCardOne.innerHTML) + parseInt(dealerCardTwo.innerHTML));
+    let playerCards = [];
+    let dealerCards = [];
     
-    playerCardOne.innerHTML = (Math.floor(Math.random()*deck.length) + 1);
-    playerCardTwo.innerHTML = (Math.floor(Math.random()*deck.length) + 1);
-    document.querySelector(".playertotal").innerHTML = "Player total: " + (parseInt(playerCardOne.innerHTML) + parseInt(playerCardTwo.innerHTML));
+    playerCards.push((Math.floor(Math.random()*deck.length) + 1))
+    playerCards.push((Math.floor(Math.random()*deck.length) + 1))
+    dealerCards.push((Math.floor(Math.random()*deck.length) + 1))
+    dealerCards.push((Math.floor(Math.random()*deck.length) + 1))
+    
+    let firstPlayerCard = playerCards[0];
+    let secondPlayerCard = playerCards[1];
+    let firstDealerCard = dealerCards[0]
+    let secondDealerCard = dealerCards[1]
+    
+    dealerCardOne.innerHTML = firstDealerCard;
+    dealerCardTwo.innerHTML = secondDealerCard;
+    document.querySelector(".dealertotal").innerHTML = "Dealer total: " + (firstDealerCard + secondDealerCard);
+
+    playerCardOne.innerHTML = firstPlayerCard;
+    playerCardTwo.innerHTML = secondPlayerCard;
+    document.querySelector(".playertotal").innerHTML = "Player total: " + (firstPlayerCard + secondPlayerCard);
+
 }
 
+// Stay listener and fn; it just prints "you win", for now
 stayButton.addEventListener("click", function() {
     console.log(this);
     document.querySelector("p").innerHTML = "you win";    
 })
-
-
-
-
 
 
 
