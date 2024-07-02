@@ -21,6 +21,8 @@ body {
     border: 1px dotted;
     display: inline;
     font-size: 2em;
+    margin: 3px;
+    padding: 4px;
 }
 
 button {
@@ -37,4 +39,12 @@ button {
 
 .playerscard, .dealerscard, p, h2 {
     align-self: center;
+}
+
+.new {
+    border-color:darkgreen;
+}
+
+.dealertotal, .playertotal {
+    padding: 20px;
 }
