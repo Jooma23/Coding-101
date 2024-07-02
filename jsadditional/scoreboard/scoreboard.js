@@ -56,7 +56,7 @@ function addThreeAway() {
 
 function winnerStyling() {
     if (homeScore >= 24 || awayScore >= 24) {
-        alert("chill out, game's over");
+        alert("chill out, you broke it");
         document.querySelector(".homescore").innerHTML = 0;
         document.querySelector(".homescore").classList.remove("celebrate");
         document.querySelector(".homescore").classList.remove("ahead");
