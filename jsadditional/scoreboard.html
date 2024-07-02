@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+    <link rel="stylesheet" href="./scoreboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scoreboard">
+        <div class="homeside">
+            <h2 class="home">Home</h2>
+            <div class="homescore"></div>
+            <div class="homecounter">
+                <button onclick=addOneHome()>+1</button>
+                <button onclick=addTwoHome()>+2</button>
+                <button onclick=addThreeHome()>+3</button>
+            </div>
+        </div>
+        <div class="awayside">
+            <h2 class="away">Away</h2>
+            <div class="awayscore"></div>
+            <div class="awaycounter">
+                <button onclick=addOneAway()>+1</button>
+                <button onclick=addTwoAway()>+2</button>
+                <button onclick=addThreeAway()>+3</button>
+            </div>
+        </div>
+    </div>  
+<script src="./scoreboard.js"></script>
+</body>
+</html>
+
+
+ 
+<!-- Requirements: 
+- Build it from "scratch", - done
+- Follow the design,  - mostly done
+- Make all 6 buttons work 
+
+Bonus req.:
+- Add New Game Button
+- Highlight the Leader
+- Add animation sound + visual
+- First to 21 wins win confetti
+
+
+-->
