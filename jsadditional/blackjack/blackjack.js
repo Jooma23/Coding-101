@@ -14,6 +14,45 @@ let dealerCards = [];
 // On document load, assume new game
 newGame();
 
+// NewGame listener and fn; it adds the rando card, class and appends it
+newGameButton.addEventListener("click", newGame);
+function newGame() {
+    let playerCards = [];
+    let dealerCards = [];    
+
+    playerCards.push((Math.floor(Math.random()*deck.length) + 1))
+    playerCards.push((Math.floor(Math.random()*deck.length) + 1))
+    dealerCards.push((Math.floor(Math.random()*deck.length) + 1))
+    dealerCards.push((Math.floor(Math.random()*deck.length) + 1))
+    
+    let firstPlayerCard = playerCards[0];
+    let secondPlayerCard = playerCards[1];
+    let firstDealerCard = dealerCards[0]
+    let secondDealerCard = dealerCards[1]
+    
+    dealerCardOne.innerHTML = firstDealerCard;
+    dealerCardTwo.innerHTML = secondDealerCard;
+    document.querySelector(".dealertotal").innerHTML = "Dealer total: " + (firstDealerCard + secondDealerCard);
+
+    playerCardOne.innerHTML = firstPlayerCard;
+    playerCardTwo.innerHTML = secondPlayerCard;
+    document.querySelector(".playertotal").innerHTML = "Player total: " + (firstPlayerCard + secondPlayerCard);
+}
+
+// You can use a for loop to start adding cards when it's less than 21. here's the rough syntax
+// for (let i = 0; i < playerCards.length; i++) {
+//     console.log(playerCards[i]);
+// }
+
+
+// Hit refractored
+
+function hitMeFr() {
+    playerCards.pop((Math.floor(Math.random()*deck.length) + 1));
+    console.log(playerCards);
+}
+
+
 // Hit listener and fn; it adds the rando card, class and appends it
 hitButton.addEventListener("click", hitMe)
 function hitMe() {
@@ -32,31 +71,6 @@ function hitMe() {
     
 }
 
-// NewGame listener and fn; it adds the rando card, class and appends it
-newGameButton.addEventListener("click", newGame);
-function newGame() {
-    let playerCards = [];
-    let dealerCards = [];
-    
-    playerCards.push((Math.floor(Math.random()*deck.length) + 1))
-    playerCards.push((Math.floor(Math.random()*deck.length) + 1))
-    dealerCards.push((Math.floor(Math.random()*deck.length) + 1))
-    dealerCards.push((Math.floor(Math.random()*deck.length) + 1))
-    
-    let firstPlayerCard = playerCards[0];
-    let secondPlayerCard = playerCards[1];
-    let firstDealerCard = dealerCards[0]
-    let secondDealerCard = dealerCards[1]
-    
-    dealerCardOne.innerHTML = firstDealerCard;
-    dealerCardTwo.innerHTML = secondDealerCard;
-    document.querySelector(".dealertotal").innerHTML = "Dealer total: " + (firstDealerCard + secondDealerCard);
-
-    playerCardOne.innerHTML = firstPlayerCard;
-    playerCardTwo.innerHTML = secondPlayerCard;
-    document.querySelector(".playertotal").innerHTML = "Player total: " + (firstPlayerCard + secondPlayerCard);
-
-}
 
 // Stay listener and fn; it just prints "you win", for now
 stayButton.addEventListener("click", function() {
