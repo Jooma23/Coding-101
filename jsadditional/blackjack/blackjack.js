@@ -8,14 +8,19 @@ let playerCardTwo = document.querySelectorAll(".player")[1];
 let dealerCardOne = document.querySelectorAll(".dealer")[0];
 let dealerCardTwo = document.querySelectorAll(".dealer")[1];
 
-let playerCards = [];
-let dealerCards = [];
-
 // On document load, assume new game
 newGame();
 
+
 // NewGame listener and fn; it adds the rando card, class and appends it
-newGameButton.addEventListener("click", newGame);
+newGameButton.addEventListener("click", newGame, reloadPage);
+
+// Why is this not doing the same as refreshing?
+function reloadPage() {
+    window.reload();
+    return false;
+}
+
 function newGame() {
     let playerCards = [];
     let dealerCards = [];    
@@ -37,13 +42,9 @@ function newGame() {
     playerCardOne.innerHTML = firstPlayerCard;
     playerCardTwo.innerHTML = secondPlayerCard;
     document.querySelector(".playertotal").innerHTML = "Player total: " + (firstPlayerCard + secondPlayerCard);
+
+    
 }
-
-// You can use a for loop to start adding cards when it's less than 21. here's the rough syntax
-// for (let i = 0; i < playerCards.length; i++) {
-//     console.log(playerCards[i]);
-// }
-
 
 // Hit refractored
 
@@ -69,13 +70,18 @@ function hitMe() {
     // Step 4: Update player values
     document.querySelector(".playertotal").innerHTML = "Player total: " + (parseInt(playerCardOne.innerHTML) + parseInt(playerCardTwo.innerHTML) + parseInt(nextCard.innerHTML));
     
+    // Abstract this into a function for checking for busts. Also, what if they pull 4 cards? 5 cards?
+    // This will likely be a large, miserable OR statement that says, "if 3 cards > 21 OR if 4 cards > 21, OR if 5 cards > 21.."
+    if ((parseInt(playerCardOne.innerHTML) + parseInt(playerCardTwo.innerHTML) + parseInt(nextCard.innerHTML)) > 21) {
+        document.querySelector("p").innerHTML = "You busted!";
+    }
+
 }
 
 
-// Stay listener and fn; it just prints "you win", for now
+// Stay listener and fn; it just prints "you win", for now. Eventually, make the dealer hit < 17. Then update the text.
 stayButton.addEventListener("click", function() {
-    console.log(this);
-    document.querySelector("p").innerHTML = "you win";    
+    document.querySelector("p").innerHTML = "Dealer hits and busts";    
 })
 
 
