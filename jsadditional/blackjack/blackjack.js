@@ -12,15 +12,17 @@ let dealerCardTwo = document.querySelectorAll(".dealer")[1];
 newGame();
 
 
-// NewGame listener and fn; it adds the rando card, class and appends it
-newGameButton.addEventListener("click", newGame, reloadPage);
+
 
 // Why is this not doing the same as refreshing?
-function reloadPage() {
-    window.reload();
-    return false;
-}
+// function reloadPage() {
+//     document.reload();
+//     return false;
+// }
 
+
+// NewGame listener and fn; it adds the rando card, class and appends it
+newGameButton.addEventListener("click", newGame);
 function newGame() {
     let playerCards = [];
     let dealerCards = [];    
@@ -46,17 +48,13 @@ function newGame() {
     
 }
 
-// Hit refractored
 
-function hitMeFr() {
-    playerCards.pop((Math.floor(Math.random()*deck.length) + 1));
-    console.log(playerCards);
-}
-
-
-// Hit listener and fn; it adds the rando card, class and appends it
+//Hit listener and fn; it adds the rando card, class and appends it
 hitButton.addEventListener("click", hitMe)
 function hitMe() {
+    
+    // for (let i = 0; i = 1; i ++) {
+    
     // Step 1: Create the div
     let nextCard = document.createElement("div");
     
@@ -68,46 +66,32 @@ function hitMe() {
     document.querySelector(".playerscard").appendChild(nextCard);
 
     // Step 4: Update player values
-    document.querySelector(".playertotal").innerHTML = "Player total: " + (parseInt(playerCardOne.innerHTML) + parseInt(playerCardTwo.innerHTML) + parseInt(nextCard.innerHTML));
+    document.querySelector(".playertotal").innerHTML =+ "Player total: " + (parseInt(playerCardOne.innerHTML) + parseInt(playerCardTwo.innerHTML) + parseInt(nextCard.innerHTML));
     
-    // Abstract this into a function for checking for busts. Also, what if they pull 4 cards? 5 cards?
-    // This will likely be a large, miserable OR statement that says, "if 3 cards > 21 OR if 4 cards > 21, OR if 5 cards > 21.."
     if ((parseInt(playerCardOne.innerHTML) + parseInt(playerCardTwo.innerHTML) + parseInt(nextCard.innerHTML)) > 21) {
         document.querySelector("p").innerHTML = "You busted!";
     }
-
 }
 
 
-// Stay listener and fn; it just prints "you win", for now. Eventually, make the dealer hit < 17. Then update the text.
+// let total = "";
+// let firstCard = [(Math.floor(Math.random()*deck.length) + 1)];
+// let secondCard = [(Math.floor(Math.random()*deck.length) + 1)];
+
+// for (let i = 0; i < 1; i++) {
+//     total += firstCard[i] + secondCard[i];
+// }
+
+
+//Stay listener and fn; it just prints "you win", for now. Eventually, make the dealer hit < 17. Then update the text.
 stayButton.addEventListener("click", function() {
     document.querySelector("p").innerHTML = "Dealer hits and busts";    
 })
 
 
+// New plan for JS
 
-
-
-/* JS plan 
-
-- Add event listeners on all buttons - done
-
-- Add basic functions
-- hit() - done
-- add a card 3 and card 4
-- 
-
-- stay()
-> dealers turn: for loop until they get to 17, then end
-> print results of winner or tie
-
-- new game()
-> Display random numbers in div - done
-> refactor onload to new game or vise versa
-
-- Learn how to use an array - done
-
-- Handle errors
-
-
-*/
+// - Fix hit fn to render proper amount. 
+// - Refactor into a loop
+// - Build stay() to hit on dealers hand and then print results
+// - newGame() should just refresh
