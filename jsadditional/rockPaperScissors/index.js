@@ -14,7 +14,7 @@ function computerChoice() {
     
     
     if (userstageEl.textContent === cpustageEl.textContent) {
-        winnerText.innerText = "It's a tie!"
+        winnerText.innerText = "Tie game!"
     }
     else if (userstageEl.textContent === "🪨" && cpustageEl.textContent === "✂️")
         {
