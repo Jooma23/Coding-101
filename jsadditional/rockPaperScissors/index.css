@@ -29,6 +29,9 @@ h1 {
     margin: 0;
 }
 
+p {
+    margin: auto;
+}
 
 button {
     margin: 20px;
@@ -39,5 +42,5 @@ button {
     background: #e98a1d;
     color: white;
     font-family: inherit;
-    font-size: 20px
+    font-size: 30px
 }
