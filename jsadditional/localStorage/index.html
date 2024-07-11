@@ -39,6 +39,7 @@
             border: none;
             border-radius: 20px;
             cursor: pointer;
+            padding-left: 10px;
         }
 
     </style>
@@ -47,44 +48,64 @@
     <div>
         <h1>Write a secret note</h1>
         <input type="text"></input>
-        <button onclick=save2()>💾</button>
+        <button onclick=save()>💾</button>
         <button onclick=hideUnhide()>👁️</button>
+        <button onclick=clearBin()>🗑️</button>
         <p class="hidden"></p>
     </div>  
     <script>
         const userNote = document.querySelector("p");
         let userInput = document.querySelector("input");
-        let arbArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        let myLeads = `["item1"]`
+        let keys = "User's List"
+        let values = `[]`
 
         // Next steps: 
-        // Figure out how to leverage this arbArray so that every save is an incremented array value
-        // Use a For Loop, and ideally make the array not hardcoded numbers
+        // Need to retrive everything in local storage prior to saving a new item
+
+        // let values = JSON.stringify(localStorage.getItem(keys))
+
+        // Fix clear()
         // Add the ability to x out one item
         // Deploy as a Chrome extension
 
+        // window.addEventListener("keypress",save)
+        
+        userInput.addEventListener("input", function() {
+            userNote.classList.add("hidden")
+        })
 
-        // This works!
-        function save2() {
-            myLeads = JSON.parse(myLeads);
-            myLeads.push("item2");
-            localStorage.setItem(myLeads[1],userInput.value);
-            
-            
-            console.log(myLeads);
-            alert("Saved 😉");
-            userInput.value = ""
-        }
+        window.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                save();
+            }
+        })
+
+        window.addEventListener('keypress', function (f) {
+            if (f.key === "7") {
+                localStorage.clear();
+            }
+        })
 
         function save() {
-            localStorage.setItem(arbArray[1],userInput.value);
+            values = JSON.parse(values);
+            values.push(userInput.value);
+            localStorage.setItem(keys,values);
+            values = JSON.stringify(values);
             alert("Saved 😉");
             userInput.value = ""
+            userNote.classList.add("hidden")
+            return values;
         }
 
         function hideUnhide() {
-            userNote.innerText = localStorage.getItem(arbArray)
-            if (userNote.classList.contains("hidden")) {
+            userNote.innerText = localStorage.getItem(keys)
+            
+            if (localStorage.length === 0) {
+                userNote.classList.add("hidden")
+                alert("No items yet 😉")
+            }
+
+            else if (userNote.classList.contains("hidden")) {
                 userNote.classList.remove("hidden")
             }
             
@@ -92,6 +113,11 @@
                 userNote.classList.add("hidden")
             }
         }
+
+        function clearBin() {
+            alert("Warning: this will clear ALL items. To continue, close and type number 7 key");
+        }
+
     </script>
 </body>
 </html>
