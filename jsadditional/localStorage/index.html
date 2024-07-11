@@ -30,6 +30,7 @@
             border-radius: 20px;
             cursor: pointer;
             padding: 10px;
+            width: 40px;
         }
 
         input {
@@ -46,15 +47,18 @@
     <div>
         <h1>Write a note to hide for later</h1>
         <input type="text"></input>
-        <button onclick=save()>Save</button>
-        <button onclick=hideUnhide()>Hide/Unhide</button>
+        <button onclick=save()>💾</button>
+        <button onclick=hideUnhide()>👁️</button>
         <p class="hidden"></p>
     </div>  
-
     <script>
         const userNote = document.querySelector("p");
         let userInput = document.querySelector("input");
         let arbArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        // Next steps: 
+        // Figure out how to leverage this arbArray so that every save is an incremented array value
+        // Use a for loop
 
         function save() {
             localStorage.setItem(arbArray[0],userInput.value);
