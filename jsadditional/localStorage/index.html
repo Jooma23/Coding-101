@@ -14,8 +14,8 @@
             border: 2px solid;
             padding: 10px;
             border-radius: 10px;
-            background-color: #D6EFD8 ;
-            color: #508D4E;
+            background-color: #F9F7F7 ;
+            color: #5A639C;
             text-align: center;
             font-family: "Abel", sans-serif;
         }
@@ -25,8 +25,7 @@
         }
 
         button {
-            color: #1A5319;
-            background-color: #80AF81;
+            background-color: #DBE2EF;
             border: none;
             border-radius: 20px;
             cursor: pointer;
@@ -35,7 +34,7 @@
         }
 
         input {
-            color: #1A5319;
+            color: #3F72AF;
             height: 35px;
             border: none;
             border-radius: 20px;
@@ -48,7 +47,7 @@
     <div>
         <h1>Write a secret note</h1>
         <input type="text"></input>
-        <button onclick=save()>💾</button>
+        <button onclick=save2()>💾</button>
         <button onclick=hideUnhide()>👁️</button>
         <p class="hidden"></p>
     </div>  
@@ -56,19 +55,35 @@
         const userNote = document.querySelector("p");
         let userInput = document.querySelector("input");
         let arbArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let myLeads = `["item1"]`
 
         // Next steps: 
         // Figure out how to leverage this arbArray so that every save is an incremented array value
-        // Use a for loop
+        // Use a For Loop, and ideally make the array not hardcoded numbers
+        // Add the ability to x out one item
+        // Deploy as a Chrome extension
+
+
+        // This works!
+        function save2() {
+            myLeads = JSON.parse(myLeads);
+            myLeads.push("item2");
+            localStorage.setItem(myLeads[1],userInput.value);
+            
+            
+            console.log(myLeads);
+            alert("Saved 😉");
+            userInput.value = ""
+        }
 
         function save() {
-            localStorage.setItem(arbArray[0],userInput.value);
+            localStorage.setItem(arbArray[1],userInput.value);
             alert("Saved 😉");
             userInput.value = ""
         }
 
         function hideUnhide() {
-            userNote.innerText = localStorage.getItem(arbArray[0])
+            userNote.innerText = localStorage.getItem(arbArray)
             if (userNote.classList.contains("hidden")) {
                 userNote.classList.remove("hidden")
             }
