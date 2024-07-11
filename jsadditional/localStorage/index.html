@@ -80,12 +80,6 @@
             }
         })
 
-        window.addEventListener('keypress', function (f) {
-            if (f.key === "7") {
-                localStorage.clear();
-            }
-        })
-
         function save() {
             values = JSON.parse(values);
             values.push(userInput.value);
@@ -115,7 +109,8 @@
         }
 
         function clearBin() {
-            alert("Warning: this will clear ALL items. To continue, close and type number 7 key");
+            localStorage.clear();
+            alert("All items cleared");
         }
 
     </script>
