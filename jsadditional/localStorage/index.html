@@ -75,7 +75,7 @@
         })
 
         window.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
+            if (e.key === 'Enter' && userInput.value != "") {
                 save();
             }
         })
