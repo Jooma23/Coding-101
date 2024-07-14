@@ -57,16 +57,16 @@
         const userNote = document.querySelector("p");
         let userInput = document.querySelector("input");
         let keys = "User's List"
-        let values = `[]`
+        let userResults = `[]`
 
         // Next steps: 
         // Need to retrive everything in local storage prior to saving a new item
 
         // let values = JSON.stringify(localStorage.getItem(keys))
 
-        // Fix clear()
-        // Add the ability to x out one item
+        // Display it as a nicer list instead (ideally <li> with a span <x> tag, so you can add x later)
         // Deploy as a Chrome extension
+        // Add the ability to x out one item
 
         // window.addEventListener("keypress",save)
         
@@ -81,14 +81,19 @@
         })
 
         function save() {
-            values = JSON.parse(values);
-            values.push(userInput.value);
-            localStorage.setItem(keys,values);
-            values = JSON.stringify(values);
-            alert("Saved 😉");
-            userInput.value = ""
-            userNote.classList.add("hidden")
-            return values;
+            if (userInput.value != "") {            
+                userResults = JSON.parse(userResults);
+                userResults.push(userInput.value);
+                localStorage.setItem(keys,userResults);
+                userResults = JSON.stringify(userResults);
+                alert("Saved 😉");
+                userInput.value = ""
+                userNote.classList.add("hidden")
+                return userResults;
+            }
+            else {
+                alert("Must added something");
+            }
         }
 
         function hideUnhide() {
