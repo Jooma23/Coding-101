@@ -57,7 +57,7 @@
         const userNote = document.querySelector("p");
         let userInput = document.querySelector("input");
         let keys = "User's List"
-        let userResults = `[]`
+        let userResults = localStorage.getItem(keys) ? JSON.parse(localStorage.getItem(keys)) : [];
 
         // Next steps: 
         // Need to retrive everything in local storage prior to saving a new item
@@ -80,24 +80,21 @@
             }
         })
 
-        function save() {
+        function save() {            
             if (userInput.value != "") {            
-                userResults = JSON.parse(userResults);
                 userResults.push(userInput.value);
-                localStorage.setItem(keys,userResults);
-                userResults = JSON.stringify(userResults);
+                localStorage.setItem(keys, JSON.stringify(userResults));
                 alert("Saved 😉");
-                userInput.value = ""
-                userNote.classList.add("hidden")
+                userInput.value = "";
+                userNote.classList.add("hidden");
                 return userResults;
-            }
-            else {
-                alert("Must added something");
+            } else {
+                alert("Must add something");
             }
         }
 
         function hideUnhide() {
-            userNote.innerText = localStorage.getItem(keys)
+            userNote.innerText = userResults.join('\n');
             
             if (localStorage.length === 0) {
                 userNote.classList.add("hidden")
@@ -115,6 +112,7 @@
 
         function clearBin() {
             localStorage.clear();
+            userResults = [];
             alert("All items cleared");
             userNote.classList.add("hidden")
         }
