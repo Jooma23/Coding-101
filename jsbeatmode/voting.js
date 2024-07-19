@@ -4,9 +4,10 @@ const descrInput = document.getElementById("desc")
 const categoryInput = document.getElementById("category") 
 const btnToggler = document.querySelector(".topbox")
 const ulElement = document.querySelector("ul")
+let charCounter = document.getElementById("charCount")
 
 
-// I'm going to try using a constructor function to create this object that can be replicated multiple times
+// Attempting a constructor function to create an object that can be replicated multiple times
 function FeatureItem (name, description, theme, numUpvotes, numDownvotes) {
     this.name = name
     this.description = description
@@ -36,6 +37,22 @@ function clearAllFields() {
     categoryInput.value = ""
 }
 
+// Dynamic character counter for description field
+descrInput.addEventListener("input", () => {
+    let charLength = descrInput.value.length;
+    
+    if (charLength === 0) {
+        charCounter.classList.add("hidden")
+    }
+    else if (charLength > 35) 
+        charCounter.style.color = "red"
+    else {
+        charCounter.classList.remove("hidden")
+        charCounter.style.color = "black"
+        charCounter.textContent = 35 - charLength;
+}
+})
+
 
 //Button for New Feature Request
 postBtn.addEventListener("click", popupToggler)
@@ -54,7 +71,7 @@ function popupToggler() {
 
 - Add a manual object array using constructor functions [Done]
 - Ensure the placeholder ones are using the constructor functions [Done]
-- newItem() to add this to the <ul>
+- newItem() to add this to the [Done]
 - LEARN AND USE FOR LOOPS
 - Add key/values to local storage: 
     > Feature Name
