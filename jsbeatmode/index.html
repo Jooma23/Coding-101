@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Board for voting</title>
+    <title>Vote now</title>
     <link href="./votingstyles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,70 +11,65 @@
 </head>
 <body>
     <div class="container">
-    <header>
-        <div class="header">
-                <img src="./bizcat.jpeg" height="40px" width="40px">
-                <h1>Feature Board</h1>
-            <button id="postButton">+</button>
-        </div>
-    </header>
-    <form class="topbox hidden">
-        <input type="text" id="description" placeholder="Description"/>
-        <span>char</span>
-        <input type="text" id="screenshot" placeholder="Screenshot link"/>
-        <select type="text" id="category">
-            <option value="">Category</option>
-            <option value="safety">Safety</option>
-            <option value="UX">UX</option>
-            <option value="General">General</option>
-        </select>
-        <button>Submit</button>
-    </form>
-    <main>
-        <aside>
-            <ul class="pills">
-                <li class="btn"><button class="pill">x</button></li>
-                <li class="btn"><button class="pill">All</button></li>
-                <li class="btn"><button class="pill">Safety</button></li>
-                <li class="btn"><button class="pill">UX</button></li>
-                <li class="btn"><button class="pill">General</button></li>
-            </ul>
-        </aside>
-        <section>    
-            <ul>
-                <li class="featurebox">
-                    <p>The Queue, and this is a description of the queue
-                    <a href="jooma.app">link to a screenshot</a>
-                    </p>
-                    <span class="category">*UX Related*</span>
-                    <div class="voting">
-                    <button>👍 10</button>
-                    <button>👎 20</button>
-                    </div>
-                </li>
-                <li class="featurebox">
-                    <p>A second piece of feedback, and its description
-                    <a href="jooma.app">link to a screenshot</a>
-                    </p>
-                    <span class="category">*UX Related*</span>
-                    <div class="voting">
+        <header>
+            <div class="header">
+                    <img src="./bizcat.jpeg" height="40px" width="40px">
+                    <h1>Feature Board</h1>
+                <button id="postButton">+</button>
+            </div>
+        </header>
+        <form class="topbox hidden">
+            <input type="text" id="description" placeholder="Title (2 words max)"/>
+            <span>char</span>
+            <input type="text" id="screenshot" placeholder="Description"/>
+            <select type="text" id="category">
+                <option value="">Category</option>
+                <option value="safety">Safety</option>
+                <option value="UX">UX</option>
+                <option value="UX">Bug</option>
+                <option value="General">General</option>
+            </select>
+            <button>Submit</button>
+        </form>
+        <main>
+            <aside>
+                <ul class="pills">
+                    <li class="btn"><button class="pill">x</button></li>
+                    <li class="btn"><button class="pill">All</button></li>
+                    <li class="btn"><button class="pill">Safety</button></li>
+                    <li class="btn"><button class="pill">UX</button></li>
+                    <li class="btn"><button class="pill">General</button></li>
+                </ul>
+            </aside>
+            <section>    
+                <ul>
+                    <li class="featurebox">
+                        <p>Required pics: <span>Description of feature</span></p>
+                        <span class="category">*UX Related*</span>
+                        <div class="voting">
                         <button>👍 10</button>
                         <button>👎 20</button>
-                    </div>
-                </li>
-                <li class="featurebox">
-                    <p>A second piece of feedback, and its description
-                    <a href="jooma.app">link to a screenshot</a>
-                    </p>
-                    <span class="category">*UX Related*</span>
-                    <div class="voting">
-                        <button>👍 10</button>
-                        <button>👎 20</button>
-                    </div>
-                </li>
-            </ul>
-        </section>
-    </main>
+                        </div>
+                    </li>
+                    <li class="featurebox">
+                        <p>Required pics: <span>Description of feature</span></p>
+                        <span class="category">*Safety*</span>
+                        <div class="voting">
+                            <button>👍 10</button>
+                            <button>👎 20</button>
+                        </div>
+                    </li>
+                    <li class="featurebox">
+                        <p>Required pics: <span>Description of feature</span></p>
+                        <span class="category">*General*</span>
+                        <div class="voting">
+                            <button>👍 10</button>
+                            <button>👎 20</button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
 </div>
 <script src="./voting.js"></script>
 </body>
