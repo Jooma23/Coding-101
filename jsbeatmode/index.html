@@ -14,14 +14,14 @@
         <header>
             <div class="header">
                     <img src="./bizcat.jpeg" height="40px" width="40px">
-                    <h1>Feature Board</h1>
-                <button id="postButton">+</button>
+                    <h1>Features</h1>
+                <button id="post-btn">+</button>
             </div>
         </header>
-        <form class="topbox hidden">
-            <input type="text" id="description" placeholder="Title (2 words max)"/>
-            <span>char</span>
-            <input type="text" id="screenshot" placeholder="Description"/>
+        <form class="topbox">
+            <input type="text" id="title" placeholder="Title"/>
+            <span></span>
+            <input type="text" id="desc" placeholder="Description"/>
             <select type="text" id="category">
                 <option value="">Category</option>
                 <option value="safety">Safety</option>
@@ -29,44 +29,21 @@
                 <option value="UX">Bug</option>
                 <option value="General">General</option>
             </select>
-            <button>Submit</button>
+            <!-- Chg type="submit" to this button to inherit default patterns -->
+            <button onclick=Submit() type="button" id="submit-btn">Submit</button>
         </form>
         <main>
             <aside>
-                <ul class="pills">
-                    <li class="btn"><button class="pill">x</button></li>
-                    <li class="btn"><button class="pill">All</button></li>
-                    <li class="btn"><button class="pill">Safety</button></li>
-                    <li class="btn"><button class="pill">UX</button></li>
-                    <li class="btn"><button class="pill">General</button></li>
-                </ul>
+                <div class="pills">
+                    <button class="pill" id="filter-btn">x</button>
+                    <button class="pill">All</button>
+                    <button class="pill">Safety</button>
+                    <button class="pill">General</button>
+                    <button class="pill">UX</button>
+                </div>
             </aside>
             <section>    
                 <ul>
-                    <li class="featurebox">
-                        <p>Required pics: <span>Description of feature</span></p>
-                        <span class="category">*UX Related*</span>
-                        <div class="voting">
-                        <button>👍 10</button>
-                        <button>👎 20</button>
-                        </div>
-                    </li>
-                    <li class="featurebox">
-                        <p>Required pics: <span>Description of feature</span></p>
-                        <span class="category">*Safety*</span>
-                        <div class="voting">
-                            <button>👍 10</button>
-                            <button>👎 20</button>
-                        </div>
-                    </li>
-                    <li class="featurebox">
-                        <p>Required pics: <span>Description of feature</span></p>
-                        <span class="category">*General*</span>
-                        <div class="voting">
-                            <button>👍 10</button>
-                            <button>👎 20</button>
-                        </div>
-                    </li>
                 </ul>
             </section>
         </main>
