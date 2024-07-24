@@ -1,16 +1,17 @@
 // // FIREBASE STUFF//
 
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
-// import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-analytics.js";
+// Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+// import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
 // // TODO: Add SDKs for Firebase products that you want to use
 // // https://firebase.google.com/docs/web/setup#available-libraries
 
 // // Your web app's Firebase configuration
 // // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // const firebaseConfig = {
-//   apiKey: "willaddelsewhere",
+//   apiKey: "willaddlater",
 //   authDomain: "featurecrudapp.firebaseapp.com",
 //   projectId: "featurecrudapp",
 //   storageBucket: "featurecrudapp.appspot.com",
@@ -22,8 +23,6 @@
 // // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
-
-
 
 // App Stuff //
 const postBtn = document.getElementById("post-btn")
