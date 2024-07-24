@@ -64,6 +64,10 @@ footer {
     padding: 5px;
 }
 
+.highlighted {
+    background-color: navy;
+}
+
 .pills {
     display: flex;
     justify-content: space-evenly;
