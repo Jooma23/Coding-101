@@ -1,3 +1,31 @@
+// // FIREBASE STUFF//
+
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
+// import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
+// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-analytics.js";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
+
+// // Your web app's Firebase configuration
+// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: "willaddelsewhere",
+//   authDomain: "featurecrudapp.firebaseapp.com",
+//   projectId: "featurecrudapp",
+//   storageBucket: "featurecrudapp.appspot.com",
+//   messagingSenderId: "776011644686",
+//   appId: "1:776011644686:web:a7a55b28bb7421a9cf615f",
+//   measurementId: "G-L1SLDPHZSH"
+// };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+
+
+
+// App Stuff //
 const postBtn = document.getElementById("post-btn")
 const titleInput = document.getElementById("title")
 const descrInput = document.getElementById("desc")
@@ -126,6 +154,11 @@ function popupToggler() {
 
 Remaining Work
 - Instead of storing in localStorage, store everything in a Firebase db. Then, you can do unAuth voting
+- Step for firebase: 
+1. Set up new FB project
+2. Initialize it in js
+3. Create async CRUD fns for it
+4. Integrate those async fn's in the app, where needed
 - Styling
 
 */
