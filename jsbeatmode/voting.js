@@ -7,7 +7,7 @@ const ulElement = document.querySelector("ul")
 let charCounter = document.getElementById("charCount")
 let featureList = []
 
-// Attempting a constructor function to create an object that can be replicated multiple times
+// Create an object for a New Items
 function FeatureItem (name, description, theme, numUpvotes, numDownvotes, userVote) {
     this.name = name
     this.description = description
@@ -17,11 +17,9 @@ function FeatureItem (name, description, theme, numUpvotes, numDownvotes, userVo
     this.userVote = userVote
 }
 
-// Load and render features from local storage on/beyond startup
+// Load the application & render features from local storage
 loadAndRenderFeatures()
 btnToggler.classList.add("hidden")
-
-
 function loadAndRenderFeatures() {
     const storedFeatures = localStorage.getItem("featureList")
     if (storedFeatures) {
@@ -43,7 +41,7 @@ function loadAndRenderFeatures() {
     }
 }
 
-// Pushes the new value into the array, stores in localStorage, and re-renders the UI
+// Pushes new values into the array, stores in localStorage, and (prob inefficiently) re-renders the whole UI
 function Submit() {
     let newFeature = new FeatureItem(titleInput.value, descrInput.value, categoryInput.value, 0, 0)
     featureList.push(newFeature)
@@ -53,6 +51,39 @@ function Submit() {
     clearAllFields()
 }
 
+// Voting logic to ensure they can only press up OR down
+ulElement.addEventListener("click", (event) => {
+    if (event.target.classList.contains("thumb")) {
+        const liElement = event.target.closest("li");
+        const index = liElement.getAttribute("data-index");
+        const feature = featureList[index];
+        const isUpvote = event.target.classList.contains("up");
+        const isDownvote = event.target.classList.contains("down");
+        const currentVote = feature.userVote;
+        
+        // Update vote counts, ensures only voting EITHER up or down, and increments/decrements accordingly
+        if (isUpvote) {
+            if (currentVote === 'down') feature.numDownvotes--;
+            if (currentVote !== 'up') {
+                feature.numUpvotes++;
+                feature.userVote = 'up';
+            }
+        } else if (isDownvote) {
+            if (currentVote === 'up') feature.numUpvotes--;
+            if (currentVote !== 'down') {
+                feature.numDownvotes++;
+                feature.userVote = 'down';
+            }
+        }
+        
+        localStorage.setItem("featureList", JSON.stringify(featureList));
+        loadAndRenderFeatures();
+    }
+});
+
+// EXTRA UX/UI stuff //
+
+// Clear the fields after submission
 function clearAllFields() {
     titleInput.value = "" 
     descrInput.value = ""
@@ -77,8 +108,7 @@ descrInput.addEventListener("input", () => {
     }
 })
 
-
-//Button for New Feature Request
+// Hide/Unhide a New Request Feature
 postBtn.addEventListener("click", popupToggler)
 function popupToggler() {
     if (btnToggler.classList.contains("hidden")) {
@@ -91,55 +121,11 @@ function popupToggler() {
     }
 }
 
-// Voting logic
-ulElement.addEventListener("click", (event) => {
-    if (event.target.classList.contains("thumb")) {
-        const liElement = event.target.closest("li");
-        const index = liElement.getAttribute("data-index");
-        const feature = featureList[index];
-        const isUpvote = event.target.classList.contains("up");
-        const isDownvote = event.target.classList.contains("down");
-        
-        // Determine current vote
-        const currentVote = feature.userVote;
-        
-        // Update vote counts and ensures they only vote for EITHER up or down
-        if (isUpvote) {
-            if (currentVote === 'down') feature.numDownvotes--;
-            if (currentVote !== 'up') {
-                feature.numUpvotes++;
-                feature.userVote = 'up';
-            }
-        } else if (isDownvote) {
-            if (currentVote === 'up') feature.numUpvotes--;
-            if (currentVote !== 'down') {
-                feature.numDownvotes++;
-                feature.userVote = 'down';
-            }
-        }
-        
-        // Save to local storage and update UI
-        localStorage.setItem("featureList", JSON.stringify(featureList));
-        loadAndRenderFeatures();
-    }
-});
 
+/*
 
-/* List of work to complete: 
-
-- Add a manual object array using constructor functions [Done]
-- Ensure the placeholder ones are using the constructor functions [Done]
-- newItem() to add this to the [Done]
-- Add key/values to local storage: [Done]
-    > Feature Name
-    > Description 
-    > upvotes: 1
-    > downvotes: 1
-- upvote() and downvote() [Done]
-    > increments the number to localStorage [Done]
-
-- errorHandling() to ensure that if an up AND down is clicked, they behave properly [Done]
-- More styling
+Remaining Work
 - Instead of storing in localStorage, store everything in a Firebase db. Then, you can do unAuth voting
+- Styling
 
 */

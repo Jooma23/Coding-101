@@ -30,6 +30,11 @@ form {
     height: 35px
 }
 
+#post-btn {
+    padding: 5px;
+    border-radius: 20px;
+}
+
 body {
     background-color:dimgrey;
 }
@@ -139,10 +144,6 @@ a {
     display: flex;
     flex-direction: column;
     gap: 2px;
-}
-
-span {
-    /* background-color: navy; */
 }
 
 .voting {
