@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testing</title>
+</head>
+<body>
+    <h1>Type in your name below<br>Hit save, then refresh</h1>
+    <input id="input" placeholder="name"></input>
+    <button onclick="run()">Save</button>
+    <p id="namegoeshere"></p>
+</body>
+<script>
+    let inputBtn = document.getElementById("input")
+    let nameField = document.getElementById("namegoeshere")
+    
+    nameField.innerText = localStorage.getItem("name")
+
+    function run() {
+        localStorage.setItem("name", inputBtn.value)
+        alert("name stored")
+        inputBtn.value = ""
+    }
+
+</script>
+</html>
