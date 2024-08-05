@@ -29,9 +29,40 @@
 
 </body>
 
-<script>
-    console.log("it works")
-</script> 
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUcJE1-2a84KGsAPZLvH_6VbzfyUCGo3Y",
+      authDomain: "featurecrudapp.firebaseapp.com",
+      projectId: "featurecrudapp",
+      storageBucket: "featurecrudapp.appspot.com",
+      messagingSenderId: "776011644686",
+      appId: "1:776011644686:web:a7a55b28bb7421a9cf615f",
+      measurementId: "G-L1SLDPHZSH"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    let btnAction = document.querySelector("button")
+
+    btnAction.addEventListener("click", submitToFS)
+    
+
+    function submitToFS() {
+        console.log("it works")
+    }
+
+
+  </script>
  
 
 </html>
