@@ -1,0 +1,24 @@
+name: Generate Config
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-config:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Generate config file
+      run: |
+        echo "const config = { apiKey: '${{ secrets.API_KEY }}' };"
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist # Adjust this to your build directory if needed
