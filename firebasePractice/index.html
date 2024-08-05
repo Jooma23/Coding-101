@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase</title>
+</head>
+<body>
+    
+<h1>Organizer Flow</h1>
+<h2>Event Name</h2>
+<input id="eventName" type="text">
+
+<p>Pick first number</p>
+<input id="first" type="number">
+
+<p>Pick second number</p>
+<input id="second" type="number">
+
+<br>
+<br>
+
+<button>Submit</button>
+
+<br>
+<br>
+
+<a href="https://google.com" id="filepath">Link will go here</a>
+
+</body>
+
+<script>
+    console.log("it works")
+</script> 
+ 
+
+</html>
+
+<!-- Game plan: 
+
+- A user opens a website - done
+- Website is password protected
+- They enter basic event details and hit Submit
+- On Submit, a new Collection in Firestore is created with the following: 
+    > Collection: unique filepath
+        > Document: whosAvail    
+            > No fields yet
+        > Document: event_details
+            > Field: event_name
+            > Field: event_start
+            > Field: event_end
+- Any user (incognito mode) can go to the generated link, and Read-only the data store in Firestore
+
+
+-->
