@@ -38,17 +38,16 @@
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    document.getElementById("eventNameDisplay").textContent = `Event Name: ${data.eventName}`;
-                    document.getElementById("firstNumberDisplay").textContent = `Small Number: ${data.firstNumber}`;
-                    document.getElementById("secondNumberDisplay").textContent = `Big Number: ${data.secondNumber}`;
+                    document.getElementById("eventNameDisplay").textContent = `Event Name they typed: ${data.eventName}`;
+                    document.getElementById("firstNumberDisplay").textContent = `First number was: ${data.firstNumber}`;
+                    document.getElementById("secondNumberDisplay").textContent = `First number was: ${data.secondNumber}`;
                 } else {
-                    document.body.innerHTML = "No such document!";
+                    document.body.innerHTML = "That event wasn't found";
                 }
             } else {
-                document.body.innerHTML = "No path specified!";
+                document.body.innerHTML = "Which event are you looking for?";
             }
         }
-
         getDataFromFirestore();
     </script>
 </body>

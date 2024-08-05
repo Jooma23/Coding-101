@@ -7,11 +7,11 @@
 </head>
 <body>
     <h1>User Flow</h1>
-    <h2>String Name</h2>
+    <h2>Event Name</h2>
     <input id="eventName" type="text">
-    <p>Pick a small number</p>
+    <p>Pick a random number</p>
     <input id="first" type="number">
-    <p>Pick a big number</p>
+    <p>Pick another random number</p>
     <input id="second" type="number">
     <br>
     <br>
@@ -71,7 +71,6 @@
         const baseUrl = window.location.origin
         const newUrl = `${baseUrl}/firebasePractice/details.html?path=${collectionPath}`
         document.getElementById("linkUrl").innerHTML = `Here's your link:<br> <a href="${newUrl}" target="_blank">${newUrl}</a>`
-    
     }
   </script>
 </html>
