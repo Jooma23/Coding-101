@@ -7,31 +7,25 @@
 </head>
 <body>
     <h1>User Flow</h1>
-    <h2>String Name</h2>
+    <h2>Event Name</h2>
     <input id="eventName" type="text">
-    <p>Pick first number</p>
-    <input id="first" type="number">
-    <p>Pick second number</p>
-    <input id="second" type="number">
+    <p>Pick a small number</p>
+    <input id="lower" type="number">
+    <p>Pick a big number</p>
+    <input id="upper" type="number">
     <br>
     <br>
     <button>Submit</button>
     <br>
     <br>
-    <!-- <a href="https://google.com" id="filepath">Link will go here</a> -->
 </body>
 
 <script type="module">
-    // Import the functions you need from the SDKs you need
+    // Firebase crap
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+    import { getFirestore, collection, doc, addDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
     apiKey: "",
     authDomain: "featurecrudapp.firebaseapp.com",
@@ -42,43 +36,46 @@
     measurementId: "G-M8ZR3ZQ5KG"
     };
   
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getFirestore(app);
 
-    // My app
+    // My app is below
     let btnAction = document.querySelector("button")
     btnAction.addEventListener("click", submitToFS)
     
-    // Generate a random 5 char filepath
+    // Generate a random 5 char filepath for the Collection Name
     function randomFilepath() {
         let filepathName = Math.floor(Math.random() * 1000000)
         return filepathName
     }
     
-
-    // Naming the collection with random ID
+    // Add Collection, 2 Documents, and some fields
     async function submitToFS() {
         const eventName = document.getElementById("eventName").value;
         const firstNumber = document.getElementById("first").value;
         const secondNumber = document.getElementById("second").value;
+        const collectionPath = randomFilepath().toString(); 
 
-        try {
-            const docRef = await addDoc(collection(db, `${randomFilepath()}`), {
+        // Add 1st Document (event details)
+        await setDoc(doc(db, collectionPath, "event_details"), {
                 eventName: eventName,
                 firstNumber: firstNumber,
                 secondNumber: secondNumber,
-                timestamp: new Date()
             });
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-        console.log("function worked")
-    }
 
-    console.log("script loaded")
+        // Add 2nd Document (whosAvail, but empty)
+        await setDoc(doc(db, collectionPath, "whosAvail"), {});
+        }
 
   </script>
 </html>
+
+<!-- Game plan: 
+
+
+- p2: Website is password protected
+- Another user opens a new url and it shows (read only) that data
+
+
+-->
