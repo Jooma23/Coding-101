@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>User Flow</h1>
-    <h2>Event Name</h2>
+    <h2>String Name</h2>
     <input id="eventName" type="text">
     <p>Pick a small number</p>
     <input id="first" type="number">
@@ -18,16 +18,22 @@
     <button>Submit</button>
     <br>
     <br>
+    <p id="linkUrl"></p>
+    <h1>Event Details</h1>
+    <div id="eventNameDisplay"></div>
+    <div id="firstNumberDisplay"></div>
+    <div id="secondNumberDisplay"></div>
+
 </body>
 
 <script type="module">
     // Firebase crap
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
-    import { getFirestore, collection, doc, addDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+    import { getFirestore, collection, getDoc, doc, addDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
     const firebaseConfig = {
-    apiKey: "",
+    apiKey: "AIzaSyDUcJE1-2a84KGsAPZLvH_6VbzfyUCGo3Y",
     authDomain: "featurecrudapp.firebaseapp.com",
     projectId: "featurecrudapp",
     storageBucket: "featurecrudapp.appspot.com",
@@ -40,7 +46,7 @@
     const analytics = getAnalytics(app);
     const db = getFirestore(app);
 
-    // My app is below
+    // Real stuff is below
     let btnAction = document.querySelector("button")
     btnAction.addEventListener("click", submitToFS)
     
@@ -52,10 +58,10 @@
     
     // Add Collection, 2 Documents, and some fields
     async function submitToFS() {
-        const eventName = document.getElementById("eventName").value;
-        const firstNumber = document.getElementById("first").value;
-        const secondNumber = document.getElementById("second").value;
-        const collectionPath = randomFilepath().toString(); 
+        const eventName = document.getElementById("eventName").value
+        const firstNumber = document.getElementById("first").value
+        const secondNumber = document.getElementById("second").value
+        const collectionPath = randomFilepath().toString()
 
         // Add 1st Document (event details)
         await setDoc(doc(db, collectionPath, "event_details"), {
@@ -66,16 +72,34 @@
 
         // Add 2nd Document (whosAvail, but empty)
         await setDoc(doc(db, collectionPath, "whosAvail"), {});
+        
+        // Generate and display the new URL
+        const baseUrl = window.location.origin
+        const newUrl = `${baseUrl}/${collectionPath}`
+        document.getElementById("linkUrl").innerHTML = `Here's your link:<br> <a href="${newUrl}" target="_blank">${newUrl}</a>`
+    
+    }
+    // Function to get data from Firestore based on the URL path
+    async function getDataFromFirestore() {
+        
+        // Only run this if the URL path has a collection path (i.e., it's not the initial form page)
+        const path = window.location.pathname.substring(1);
+        if (path) {
+            const docRef = doc(db, path, "event_details");
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                document.getElementById("eventNameDisplay").textContent = `Event Name: ${data.eventName}`;
+                document.getElementById("firstNumberDisplay").textContent = `Small Number: ${data.firstNumber}`;
+                document.getElementById("secondNumberDisplay").textContent = `Big Number: ${data.secondNumber}`;
+            } else {
+                document.body.innerHTML = "No such document!";
+            }
         }
+    }
+
+    getDataFromFirestore();
 
   </script>
 </html>
-
-<!-- Game plan: 
-
-
-- p2: Website is password protected
-- Another user opens a new url and it shows (read only) that data
-
-
--->
