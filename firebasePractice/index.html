@@ -19,13 +19,7 @@
     <br>
     <br>
     <p id="linkUrl"></p>
-    <h1>Event Details</h1>
-    <div id="eventNameDisplay"></div>
-    <div id="firstNumberDisplay"></div>
-    <div id="secondNumberDisplay"></div>
-
 </body>
-
 <script type="module">
     // Firebase crap
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
@@ -79,27 +73,5 @@
         document.getElementById("linkUrl").innerHTML = `Here's your link:<br> <a href="${newUrl}" target="_blank">${newUrl}</a>`
     
     }
-    // Function to get data from Firestore based on the URL path
-    async function getDataFromFirestore() {
-        
-        // Only run this if the URL path has a collection path (i.e., it's not the initial form page)
-        const path = window.location.pathname.substring(1);
-        if (path) {
-            const docRef = doc(db, path, "event_details");
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                document.getElementById("eventNameDisplay").textContent = `Event Name: ${data.eventName}`;
-                document.getElementById("firstNumberDisplay").textContent = `Small Number: ${data.firstNumber}`;
-                document.getElementById("secondNumberDisplay").textContent = `Big Number: ${data.secondNumber}`;
-            } else {
-                document.body.innerHTML = "No such document!";
-            }
-        }
-    }
-
-    getDataFromFirestore();
-
   </script>
 </html>

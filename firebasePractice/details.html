@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+</head>
+<body>
+    <h1>Event Details</h1>
+    <div id="eventNameDisplay"></div>
+    <div id="firstNumberDisplay"></div>
+    <div id="secondNumberDisplay"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDUcJE1-2a84KGsAPZLvH_6VbzfyUCGo3Y",
+            authDomain: "featurecrudapp.firebaseapp.com",
+            projectId: "featurecrudapp",
+            storageBucket: "featurecrudapp.appspot.com",
+            messagingSenderId: "776011644686",
+            appId: "1:776011644686:web:13f358784f6d010ecf615f",
+            measurementId: "G-M8ZR3ZQ5KG"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function getDataFromFirestore() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const path = urlParams.get('path');
+            
+            if (path) {
+                const docRef = doc(db, path, "event_details");
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    document.getElementById("eventNameDisplay").textContent = `Event Name: ${data.eventName}`;
+                    document.getElementById("firstNumberDisplay").textContent = `Small Number: ${data.firstNumber}`;
+                    document.getElementById("secondNumberDisplay").textContent = `Big Number: ${data.secondNumber}`;
+                } else {
+                    document.body.innerHTML = "No such document!";
+                }
+            } else {
+                document.body.innerHTML = "No path specified!";
+            }
+        }
+
+        getDataFromFirestore();
+    </script>
+</body>
+</html>
