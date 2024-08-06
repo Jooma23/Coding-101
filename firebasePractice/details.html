@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Details</title>
+    <title>Details</title>
 </head>
 <body>
-    <h1>Event Details</h1>
+    <h1>What they wrote</h1>
     <div id="eventNameDisplay"></div>
     <div id="firstNumberDisplay"></div>
     <div id="secondNumberDisplay"></div>
@@ -38,7 +38,7 @@
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    document.getElementById("eventNameDisplay").textContent = `Event Name they typed: ${data.eventName}`;
+                    document.getElementById("eventNameDisplay").textContent = `Random word typed: ${data.eventName}`;
                     document.getElementById("firstNumberDisplay").textContent = `First number was: ${data.firstNumber}`;
                     document.getElementById("secondNumberDisplay").textContent = `First number was: ${data.secondNumber}`;
                 } else {

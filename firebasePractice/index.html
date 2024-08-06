@@ -7,11 +7,11 @@
 </head>
 <body>
     <h1>User Flow</h1>
-    <h2>Event Name</h2>
+    <h2>Type a random word</h2>
     <input id="eventName" type="text">
-    <p>Pick a random number</p>
+    <p>Type a random number</p>
     <input id="first" type="number">
-    <p>Pick another random number</p>
+    <p>Type another random number</p>
     <input id="second" type="number">
     <br>
     <br>
@@ -57,7 +57,7 @@
         const secondNumber = document.getElementById("second").value
         const collectionPath = randomFilepath().toString()
 
-        // Add 1st Document (event details)
+        // Add 1st Document (event_details)
         await setDoc(doc(db, collectionPath, "event_details"), {
                 eventName: eventName,
                 firstNumber: firstNumber,
