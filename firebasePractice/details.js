@@ -21,7 +21,6 @@ const resultsForm = document.getElementById("results")
 const imgToggle = document.getElementById("showhideImg")        
 const voterName = document.getElementById("votername")
 const storedName = localStorage.getItem("username") 
-const getName = prompt("What is your first name?")       
 btnToggle.addEventListener("click", classChange)
 
 // Show the name of the voter
@@ -50,6 +49,7 @@ function storeNameInLS() {
         // do nothing
     }
     else {
+        const getName = prompt("What is your first name?")
         localStorage.setItem("username", getName)
     }
 }
