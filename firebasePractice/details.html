@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details</title>
 </head>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
 <body>
     <h1>What they wrote</h1>
-    <div id="eventNameDisplay"></div>
-    <div id="firstNumberDisplay"></div>
-    <div id="secondNumberDisplay"></div>
-
+    <button id="showhide">Show/hide</button>
+    <div id="results">
+        <div id="eventNameDisplay"></div>
+        <div id="firstNumberDisplay"></div>
+        <div id="secondNumberDisplay"></div>
+    </div>  
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
         import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
@@ -27,7 +34,23 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        
+        
+        let btnToggle = document.getElementById("showhide")
+        let resultsForm = document.getElementById("results")
 
+        btnToggle.addEventListener("click", classChange)
+
+        function classChange() {
+            if (resultsForm.classList.contains("hidden")) {
+                resultsForm.classList.remove("hidden")
+            }
+            else {
+                resultsForm.classList.add("hidden")
+            }
+        }
+
+        // Show the results
         async function getDataFromFirestore() {
             const urlParams = new URLSearchParams(window.location.search);
             const path = urlParams.get('path');
