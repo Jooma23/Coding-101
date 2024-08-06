@@ -1,3 +1,4 @@
+// Firebase crap
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
@@ -14,12 +15,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Real stuff is below
 let btnToggle = document.getElementById("showhideBtn")
 let resultsForm = document.getElementById("results")
 let imgToggle = document.getElementById("showhideImg")        
-
 btnToggle.addEventListener("click", classChange)
 
+// Show & Hide Toggle 
 function classChange() {
     if (resultsForm.classList.contains("hidden")) {
         resultsForm.classList.remove("hidden")
@@ -36,7 +38,19 @@ function classChange() {
     }
 }
 
-// Show the results
+// Store name in LS so that we know "who is voting"
+function storeNameInLS() {
+    const storedName = localStorage.getItem("username")
+    if (storedName) {
+        // do nothing
+    }
+    else {
+        const getName = prompt("What is your first name?")
+        localStorage.setItem("username", getName)
+    }
+}
+
+// Pull results from Firestore
 async function getDataFromFirestore() {
     const urlParams = new URLSearchParams(window.location.search);
     const path = urlParams.get('path');
@@ -57,4 +71,7 @@ async function getDataFromFirestore() {
         document.body.innerHTML = "Which event are you looking for?";
     }
 }
+
+// Run the app
+storeNameInLS()
 getDataFromFirestore();

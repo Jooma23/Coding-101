@@ -1,6 +1,5 @@
 // Firebase crap
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -14,7 +13,6 @@ measurementId: "G-M8ZR3ZQ5KG"
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 // Real stuff is below
@@ -27,7 +25,7 @@ function randomFilepath() {
     return filepathName
 }
 
-// Add Collection, 2 Documents, and some fields
+// Add 1 Collection, 2 Documents, and some fields
 async function submitToFS() {
     const eventName = document.getElementById("eventName").value
     const firstNumber = document.getElementById("first").value
@@ -47,5 +45,5 @@ async function submitToFS() {
     // Generate and display the new URL
     const baseUrl = window.location.origin
     const newUrl = `${baseUrl}/firebasePractice/details.html?path=${collectionPath}`
-    document.getElementById("linkUrl").innerHTML = `Here's your link:<br> <a href="${newUrl}" target="_blank">${newUrl}</a>`
+    document.getElementById("linkUrl").innerHTML = `Here's your link to share:<br> <a href="${newUrl}" target="_blank">${newUrl}</a>`
 }
