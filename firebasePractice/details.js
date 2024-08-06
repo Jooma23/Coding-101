@@ -16,10 +16,16 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Real stuff is below
-let btnToggle = document.getElementById("showhideBtn")
-let resultsForm = document.getElementById("results")
-let imgToggle = document.getElementById("showhideImg")        
+const btnToggle = document.getElementById("showhideBtn")
+const resultsForm = document.getElementById("results")
+const imgToggle = document.getElementById("showhideImg")        
+const voterName = document.getElementById("votername")
+const storedName = localStorage.getItem("username") 
+const getName = prompt("What is your first name?")       
 btnToggle.addEventListener("click", classChange)
+
+// Show the name of the voter
+voterName.innerHTML = `${storedName} is voting`
 
 // Show & Hide Toggle 
 function classChange() {
@@ -40,12 +46,10 @@ function classChange() {
 
 // Store name in LS so that we know "who is voting"
 function storeNameInLS() {
-    const storedName = localStorage.getItem("username")
     if (storedName) {
         // do nothing
     }
     else {
-        const getName = prompt("What is your first name?")
         localStorage.setItem("username", getName)
     }
 }
@@ -61,7 +65,7 @@ async function getDataFromFirestore() {
 
         if (docSnap.exists()) {
             const data = docSnap.data();
-            document.getElementById("eventNameDisplay").textContent = `Event was called: ${data.eventName}`;
+            document.getElementById("eventNameDisplay").textContent = `${data.eventName}`;
             document.getElementById("firstNumberDisplay").textContent = `Earliest start date was: ${data.firstNumber}`;
             document.getElementById("secondNumberDisplay").textContent = `Latest start date was: ${data.secondNumber}`;
         } else {
