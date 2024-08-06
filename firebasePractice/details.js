@@ -14,9 +14,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/fireba
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         
-        
-        let btnToggle = document.getElementById("showhide")
+        let btnToggle = document.getElementById("showhideBtn")
         let resultsForm = document.getElementById("results")
+        let imgToggle = document.getElementById("showhideImg")        
 
         btnToggle.addEventListener("click", classChange)
 
@@ -26,6 +26,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/fireba
             }
             else {
                 resultsForm.classList.add("hidden")
+            }
+
+            if (imgToggle.classList.contains("hidden")) {
+                imgToggle.classList.remove("hidden")
+            }
+            else {
+                imgToggle.classList.add("hidden")
             }
         }
 
@@ -40,9 +47,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/fireba
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    document.getElementById("eventNameDisplay").textContent = `Random word typed: ${data.eventName}`;
-                    document.getElementById("firstNumberDisplay").textContent = `First number was: ${data.firstNumber}`;
-                    document.getElementById("secondNumberDisplay").textContent = `First number was: ${data.secondNumber}`;
+                    document.getElementById("eventNameDisplay").textContent = `Event was called: ${data.eventName}`;
+                    document.getElementById("firstNumberDisplay").textContent = `Earliest start date was: ${data.firstNumber}`;
+                    document.getElementById("secondNumberDisplay").textContent = `Latest start date was: ${data.secondNumber}`;
                 } else {
                     document.body.innerHTML = "That event wasn't found";
                 }
