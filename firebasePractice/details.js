@@ -16,42 +16,46 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Real stuff is below
-// const btnToggle = document.getElementById("showhideBtn")
-// const resultsForm = document.getElementById("results")
-// const imgToggle = document.getElementById("showhideImg")        
-// const voterName = document.getElementById("votername")
-const storedName = localStorage.getItem("username") 
-// btnToggle.addEventListener("click", classChange)
+const voterName = document.getElementById("votername")
+const fieldsets = document.querySelectorAll('fieldset');
 
-// Show the name of the voter
-// voterName.innerHTML = `${storedName} is voting`
-
-// Show & Hide Toggle 
-function classChange() {
-    if (resultsForm.classList.contains("hidden")) {
-        resultsForm.classList.remove("hidden")
-    }
-    else {
-        resultsForm.classList.add("hidden")
-    }
-
-    if (imgToggle.classList.contains("hidden")) {
-        imgToggle.classList.remove("hidden")
-    }
-    else {
-        imgToggle.classList.add("hidden")
-    }
+for (let i = 0; i < fieldsets.length; i++) {
+    fieldsets[i].addEventListener('click', function(event) {
+        if (event.target.type === 'radio') {
+            const div = fieldsets[i].querySelector('div.hidden');
+            if (div) {
+                div.classList.remove('hidden');
+            }
+        }
+    });
 }
+
+// Global Show & Hide Toggle 
+// function classChange() {
+//     if (resultsForm.classList.contains("hidden")) {
+//         resultsForm.classList.remove("hidden")
+//     }
+//     else {
+//         resultsForm.classList.add("hidden")
+//     }
+
+//     if (imgToggle.classList.contains("hidden")) {
+//         imgToggle.classList.remove("hidden")
+//     }
+//     else {
+//         imgToggle.classList.add("hidden")
+//     }
+// }
 
 // Store name in LS so that we know "who is voting"
 function storeNameInLS() {
-    if (storedName) {
-        // do nothing
-    }
-    else {
+    let storedName = localStorage.getItem("username") 
+    if (!storedName) {
         const getName = prompt("What is your first name?")
         localStorage.setItem("username", getName)
+        storedName = getName
     }
+    voterName.innerHTML = `${storedName} is voting`
 }
 
 // Pull results from Firestore
@@ -78,4 +82,4 @@ async function getDataFromFirestore() {
 
 // Run the app
 storeNameInLS()
-getDataFromFirestore();
+
