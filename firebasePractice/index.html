@@ -8,7 +8,7 @@
 <link href="./styles.css" rel="stylesheet">
 <body>
     <h1>User Flow</h1>
-    <h3>Enter event name</h3>
+    <h3>What are you polling on?</h3>
     <input id="eventName" type="text">
     <h3 class="hidden">Enter a small number</h3>
     <input class="hidden" id="first" type="number">
@@ -27,6 +27,13 @@
 
 <!-- Today's practice: 
 
-- Index: Name of event, nothing else: done
-- Details: Any user comes in, casts their favorite color vote
-- Details: Results are displayed nicely -->
+- Index: Name of the thing we're voting for, nothing else: done
+- Details: Any user comes in, casts their vote on this or that:
+    > Store the name in localStorage upon loading the page (this should only happen once per domain)
+    > Add fieldsets with only 2 radio buttons and a hidden <div> to display results
+    > Upon voting: 
+        > the vote is stored to firestore   
+        > the div underneath is unhidden, and the data from firestore is displayed
+        > upon changing vote, it's re-calculated
+
+-->

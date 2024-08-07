@@ -66,8 +66,8 @@ async function getDataFromFirestore() {
         if (docSnap.exists()) {
             const data = docSnap.data();
             document.getElementById("eventNameDisplay").textContent = `${data.eventName}`;
-            document.getElementById("firstNumberDisplay").textContent = `Earliest start date was: ${data.firstNumber}`;
-            document.getElementById("secondNumberDisplay").textContent = `Latest start date was: ${data.secondNumber}`;
+            // document.getElementById("firstNumberDisplay").textContent = `Earliest start date was: ${data.firstNumber}`;
+            // document.getElementById("secondNumberDisplay").textContent = `Latest start date was: ${data.secondNumber}`;
         } else {
             document.body.innerHTML = "That event wasn't found";
         }
