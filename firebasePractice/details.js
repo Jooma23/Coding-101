@@ -57,7 +57,7 @@ function storeNameInLS() {
 // Pull results from Firestore
 async function getDataFromFirestore() {
     const urlParams = new URLSearchParams(window.location.search);
-    const path = urlParams.get('path');
+    const path = urlParams.get('eventid');
     
     if (path) {
         const docRef = doc(db, path, "event_details");
