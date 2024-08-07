@@ -10,10 +10,39 @@
     <h2>Help me learn javascript.</h2>
     <h3 id="eventNameDisplay"></h3>
     <br>
+    <fieldset>
+        <legend>Which animal is better?</legend>
+        <div>
+          <input type="radio" id="petChoice1" name="pet" value="cat" />
+          <label for="petChoice1">Cat</label>
+          <input type="radio" id="petChoice2" name="pet" value="dog" />
+          <label for="petChoice2">Dog</label>
+        </div>
+        
+        <div class="hidden">
+        <br>
+            Others that agree with you:
+        </div>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Pineapples on Pizza?</legend>
+        <div>
+          <input type="radio" id="pizzaChoice1" name="pizza" value="fine" />
+          <label for="pizzaChoice1">It's fine</label>
+          <input type="radio" id="pizzaChoice2" name="pizza" value="gross" />
+          <label for="pizzaChoice2">Gross</label>
+        </div>
+        
+        <div class="hidden">
+        <br>
+            Others that agree with you:
+        </div>
+    </fieldset>
     <!-- <button id="showhideBtn">Show/hide Toggle</button> -->
-    <div id="results" class="hidden">
+    <!-- <div id="results" class="hidden">
         <div id="favoriteColorDisplay"></div>
-    </div>
+    </div> -->
 <script type="module" src="./details.js">
 </script>
 </body>
