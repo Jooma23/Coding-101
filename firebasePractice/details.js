@@ -44,19 +44,21 @@ async function handleRadioClick(event) {
 }
 
 // Update Firestore with user's vote
-async function updateVoteInFirestore(userName, voteCategory, voteValue) {
+async function updateVoteInFirestore(userName, voteValue) {
     const docRef = doc(db, path, "whosAvail");
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
+        const data = docSnap.data();
+        const userVotes = data[userName] || [];
+        userVotes.push(voteValue);
         await updateDoc(docRef, {
-            [username]: {
-            [voteCategory]: voteValue
-            }
+            [username]: userVotes
         });
-    } else {
+    }
+    else {
         await setDoc(docRef, {
-            [voteCategory]: voteValue
+            [userName]: [voteValue]
         });
     }
 }
