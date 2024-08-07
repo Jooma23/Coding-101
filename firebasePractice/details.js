@@ -55,17 +55,19 @@ async function handleRadioClick(event) {
 
 // Update Firestore with user's vote even if they change it
 async function updateVoteInFirestore(userName, newVoteValue) {
-    const docRef = doc(db, path, "whosAvail")
-    const docSnap = await getDoc(docRef)
+    const docRef = doc(db, path, "whosAvail");
+    const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
+        const data = docSnap.data();
+        const userVotes = data[userName] || [];  // Get existing votes or initialize empty array
+        userVotes.push(newVoteValue);            // Append new vote to existing votes
         await updateDoc(docRef, {
-            [userName]: [newVoteValue]
+            [userName]: userVotes                // Update the document with the new votes array
         });
-    }
-    else {
+    } else {
         await setDoc(docRef, {
-            [userName]: [newVoteValue]
+            [userName]: [newVoteValue]            // Create new document with the initial vote
         });
     }
 }
