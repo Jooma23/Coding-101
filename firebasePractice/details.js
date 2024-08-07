@@ -53,7 +53,7 @@ async function updateVoteInFirestore(userName, voteValue) {
         const userVotes = data[userName] || [];
         userVotes.push(voteValue);
         await updateDoc(docRef, {
-            [username]: userVotes
+            [userName]: userVotes
         });
     }
     else {
