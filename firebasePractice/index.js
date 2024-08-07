@@ -40,6 +40,6 @@ async function submitToFS() {
     
     // Generate and display the new URL
     const baseUrl = window.location.origin
-    const newUrl = `${baseUrl}/firebasePractice/details.html?ThisIsForMyOwnPracticeDoNotShare?eventid=${collectionPath}`
+    const newUrl = `${baseUrl}/firebasePractice/details.html?ThisIsForMyOwnPracticeDoNotShare&eventid=${collectionPath}`
     document.getElementById("linkUrl").innerHTML = `Here's your link to share:<br> <a href="${newUrl}" target="_blank">${newUrl}</a>`
 }
