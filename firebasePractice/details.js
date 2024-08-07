@@ -22,47 +22,6 @@ const userName = storeNameInLS();
 const urlParams = new URLSearchParams(window.location.search);
 const path = urlParams.get('eventid');
 
-for (let i = 0; i < fieldsets.length; i++) {
-    fieldsets[i].addEventListener('click', handleRadioClick)
-}
-
-// Handle radio button click event
-async function handleRadioClick(event) {
-    if (event.target.type === 'radio') {
-        const fieldset = event.currentTarget;
-        const div = fieldset.querySelector('div.hidden');
-        if (div) {
-            div.classList.remove('hidden');
-        }
-
-        const voteValue = event.target.value;
-        const voteCategory = event.target.name;
-
-        await updateVoteInFirestore(userName, voteCategory, voteValue);
-        await displayResultsFromFirestore(voteCategory, div);
-    }
-}
-
-// Update Firestore with user's vote
-async function updateVoteInFirestore(userName, voteValue) {
-    const docRef = doc(db, path, "whosAvail");
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-        const data = docSnap.data();
-        const userVotes = data[userName] || [];
-        userVotes.push(voteValue);
-        await updateDoc(docRef, {
-            [userName]: userVotes
-        });
-    }
-    else {
-        await setDoc(docRef, {
-            [userName]: [voteValue]
-        });
-    }
-}
-
 // Store name in LS so that we know "who is voting"
 function storeNameInLS() {
     let storedName = localStorage.getItem("username") 
@@ -75,7 +34,43 @@ function storeNameInLS() {
     return storedName
 }
 
-// Pull results from Firestore
+// Handle radio button click event
+for (let i = 0; i < fieldsets.length; i++) {
+    fieldsets[i].addEventListener('click', handleRadioClick)
+}
+async function handleRadioClick(event) {
+    if (event.target.type === 'radio') {
+        const fieldset = event.currentTarget;
+        const div = fieldset.querySelector('div.hidden');
+        if (div) {
+            div.classList.remove('hidden');
+        }
+
+        const voteValue = event.target.value;
+
+        await updateVoteInFirestore(userName, voteValue);
+        await displayResultsFromFirestore(voteValue, div);
+    }
+}
+
+// Update Firestore with user's vote even if they change it
+async function updateVoteInFirestore(userName, newVoteValue) {
+    const docRef = doc(db, path, "whosAvail")
+    const docSnap = await getDoc(docRef)
+
+    if (docSnap.exists()) {
+        await updateDoc(docRef, {
+            [userName]: [newVoteValue]
+        });
+    }
+    else {
+        await setDoc(docRef, {
+            [userName]: [newVoteValue]
+        });
+    }
+}
+
+// Pull event name from Firestore
 async function getDataFromFirestore() {   
     if (path) {
         const docRef = doc(db, path, "event_details");
@@ -93,7 +88,7 @@ async function getDataFromFirestore() {
 }
 
 // Display results from Firestore
-async function displayResultsFromFirestore(voteCategory, div) {
+async function displayResultsFromFirestore(voteValue, div) {
     const docRef = doc(db, path, "whosAvail");
     const whosAvailDoc = await getDoc(docRef);
     const allVotes = whosAvailDoc.data();
@@ -104,14 +99,14 @@ async function displayResultsFromFirestore(voteCategory, div) {
     }
 
     Object.entries(allVotes).forEach(([name, votes]) => {
-        if (votes[voteCategory] === voteCategory) {
-            categoryVotes[name] = votes[voteCategory];
+        if (votes.includes(voteValue)) {
+            categoryVotes[name] = votes;
         }
     });
 
     let resultText = "<br>Others that agree with you:<br>";
-    Object.entries(categoryVotes).forEach(([name, vote]) => {
-        if (vote === voteCategory) {
+    Object.entries(categoryVotes).forEach(([name, votes]) => {
+        if (votes.includes(voteValue)) {
             resultText += `${name}<br>`;
         }
     });
