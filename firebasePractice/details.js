@@ -50,8 +50,9 @@ async function updateVoteInFirestore(userName, voteCategory, voteValue) {
 
     if (docSnap.exists()) {
         await updateDoc(docRef, {
-            ...docSnap.data()[userName],
+            [username]: {
             [voteCategory]: voteValue
+            }
         });
     } else {
         await setDoc(docRef, {
@@ -102,7 +103,7 @@ async function displayResultsFromFirestore(voteCategory, div) {
 
     Object.entries(allVotes).forEach(([name, votes]) => {
         if (votes[voteCategory] === voteCategory) {
-            categoryVotes[name] = voteCategory;
+            categoryVotes[name] = votes[voteCategory];
         }
     });
 
