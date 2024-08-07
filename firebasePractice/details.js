@@ -45,39 +45,43 @@ async function handleRadioClick(event) {
         if (div) {
             div.classList.remove('hidden');
         }
-
         const voteValue = event.target.value;
-
-        await updateVoteInFirestore(userName, voteValue);
-        await displayResultsFromFirestore(voteValue, div);
+        const categoryName = event.target.name; // Get category name from the radio button
+        await updateVoteInFirestore(userName, categoryName, voteValue);
+        await displayResultsFromFirestore(voteValue, div, categoryName);
     }
 }
 
-// Update Firestore with user's vote even if they change it
-async function updateVoteInFirestore(userName, newVoteValue) {
+async function updateVoteInFirestore(userName, categoryName, newVoteValue) {
     const docRef = doc(db, path, "whosAvail");
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
         const data = docSnap.data();
-        const userVotes = data[userName] || [];  // Get existing votes or initialize empty array
+        const userVotes = data[userName] || {};  // Get existing votes or initialize empty object
+        const categoryVotes = userVotes[categoryName] || []; // Get votes for the category
 
-        if (userVotes.length > 0) {
-            // Replace the first vote (change this if you have specific logic for which vote to replace)
-            userVotes[0] = newVoteValue; // Replace with appropriate index based on category
-        } else {
-            userVotes.push(newVoteValue); // Add new vote if the array is empty
+        // Replace existing vote or add new one
+        const updatedVotes = categoryVotes.map(vote => vote === newVoteValue ? newVoteValue : vote);
+
+        if (!updatedVotes.includes(newVoteValue)) {
+            updatedVotes.push(newVoteValue);  // Add new vote if it’s not already present
         }
 
+        userVotes[categoryName] = updatedVotes;
+
         await updateDoc(docRef, {
-            [userName]: userVotes  // Update the document with the new votes array
+            [userName]: userVotes  // Update the document with the new votes object
         });
     } else {
         await setDoc(docRef, {
-            [userName]: [newVoteValue]  // Create new document with the initial vote
+            [userName]: {
+                [categoryName]: [newVoteValue]  // Create new document with the initial vote
+            }
         });
     }
 }
+
 
 // Pull event name from Firestore
 async function getDataFromFirestore() {   
@@ -97,7 +101,7 @@ async function getDataFromFirestore() {
 }
 
 // Display results from Firestore
-async function displayResultsFromFirestore(voteValue, div) {
+async function displayResultsFromFirestore(voteValue, div, categoryName) {
     const docRef = doc(db, path, "whosAvail");
     const whosAvailDoc = await getDoc(docRef);
     const allVotes = whosAvailDoc.data();
@@ -108,8 +112,8 @@ async function displayResultsFromFirestore(voteValue, div) {
     }
 
     Object.entries(allVotes).forEach(([name, votes]) => {
-        if (votes.includes(voteValue)) {
-            categoryVotes[name] = votes;
+        if (votes[categoryName] && votes[categoryName].includes(voteValue)) {
+            categoryVotes[name] = votes[categoryName];
         }
     });
 
@@ -122,6 +126,7 @@ async function displayResultsFromFirestore(voteValue, div) {
 
     div.innerHTML = resultText;
 }
+
 
 // Run the app
 getDataFromFirestore()
