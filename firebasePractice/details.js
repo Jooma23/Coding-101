@@ -61,13 +61,20 @@ async function updateVoteInFirestore(userName, newVoteValue) {
     if (docSnap.exists()) {
         const data = docSnap.data();
         const userVotes = data[userName] || [];  // Get existing votes or initialize empty array
-        userVotes.push(newVoteValue);            // Append new vote to existing votes
+
+        if (userVotes.length > 0) {
+            // Replace the first vote (change this if you have specific logic for which vote to replace)
+            userVotes[0] = newVoteValue; // Replace with appropriate index based on category
+        } else {
+            userVotes.push(newVoteValue); // Add new vote if the array is empty
+        }
+
         await updateDoc(docRef, {
-            [userName]: userVotes                // Update the document with the new votes array
+            [userName]: userVotes  // Update the document with the new votes array
         });
     } else {
         await setDoc(docRef, {
-            [userName]: [newVoteValue]            // Create new document with the initial vote
+            [userName]: [newVoteValue]  // Create new document with the initial vote
         });
     }
 }
