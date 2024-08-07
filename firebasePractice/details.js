@@ -16,15 +16,15 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Real stuff is below
-const btnToggle = document.getElementById("showhideBtn")
-const resultsForm = document.getElementById("results")
-const imgToggle = document.getElementById("showhideImg")        
-const voterName = document.getElementById("votername")
+// const btnToggle = document.getElementById("showhideBtn")
+// const resultsForm = document.getElementById("results")
+// const imgToggle = document.getElementById("showhideImg")        
+// const voterName = document.getElementById("votername")
 const storedName = localStorage.getItem("username") 
-btnToggle.addEventListener("click", classChange)
+// btnToggle.addEventListener("click", classChange)
 
 // Show the name of the voter
-voterName.innerHTML = `${storedName} is voting`
+// voterName.innerHTML = `${storedName} is voting`
 
 // Show & Hide Toggle 
 function classChange() {

@@ -21,22 +21,18 @@ btnAction.addEventListener("click", submitToFS)
 
 // Generate a random 5 char filepath for the Collection Name
 function randomFilepath() {
-    let filepathName = Math.floor(Math.random() * 1000000)
+    let filepathName = Math.floor(Math.random() * 1000)
     return filepathName
 }
 
 // Add 1 Collection, 2 Documents, and some fields
 async function submitToFS() {
     const eventName = document.getElementById("eventName").value
-    const firstNumber = document.getElementById("first").value
-    const secondNumber = document.getElementById("second").value
     const collectionPath = randomFilepath().toString()
 
     // Add 1st Document (event_details)
     await setDoc(doc(db, collectionPath, "event_details"), {
             eventName: eventName,
-            firstNumber: firstNumber,
-            secondNumber: secondNumber,
         });
 
     // Add 2nd Document (whosAvail, but empty)
@@ -44,6 +40,6 @@ async function submitToFS() {
     
     // Generate and display the new URL
     const baseUrl = window.location.origin
-    const newUrl = `${baseUrl}/firebasePractice/details.html?eventid=${collectionPath}`
+    const newUrl = `${baseUrl}/firebasePractice/details.html?ThisIsForMyOwnPracticeDoNotShare?eventid=${collectionPath}`
     document.getElementById("linkUrl").innerHTML = `Here's your link to share:<br> <a href="${newUrl}" target="_blank">${newUrl}</a>`
 }
