@@ -21,14 +21,7 @@ const fieldsets = document.querySelectorAll('fieldset');
 const userName = storeNameInLS();
 
 for (let i = 0; i < fieldsets.length; i++) {
-    fieldsets[i].addEventListener('click', function(event) {
-        if (event.target.type === 'radio') {
-            const div = fieldsets[i].querySelector('div.hidden');
-            if (div) {
-                div.classList.remove('hidden');
-            }
-        }
-    });
+    fieldsets[i].addEventListener('click', handleRadioClick)
 }
 
 // Handle radio button click event
