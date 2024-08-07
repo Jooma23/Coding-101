@@ -16,9 +16,11 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Real stuff is below
-const voterName = document.getElementById("votername")
+const voterName = document.getElementById("votername");
 const fieldsets = document.querySelectorAll('fieldset');
 const userName = storeNameInLS();
+const urlParams = new URLSearchParams(window.location.search);
+const path = urlParams.get('eventid');
 
 for (let i = 0; i < fieldsets.length; i++) {
     fieldsets[i].addEventListener('click', handleRadioClick)
@@ -43,11 +45,12 @@ async function handleRadioClick(event) {
 
 // Update Firestore with user's vote
 async function updateVoteInFirestore(userName, voteCategory, voteValue) {
-    const docRef = doc(db, "whosAvail", userName);
+    const docRef = doc(db, path, "whosAvail");
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
         await updateDoc(docRef, {
+            ...docSnap.data()[userName],
             [voteCategory]: voteValue
         });
     } else {
@@ -56,23 +59,6 @@ async function updateVoteInFirestore(userName, voteCategory, voteValue) {
         });
     }
 }
-
-// Global Show & Hide Toggle 
-// function classChange() {
-//     if (resultsForm.classList.contains("hidden")) {
-//         resultsForm.classList.remove("hidden")
-//     }
-//     else {
-//         resultsForm.classList.add("hidden")
-//     }
-
-//     if (imgToggle.classList.contains("hidden")) {
-//         imgToggle.classList.remove("hidden")
-//     }
-//     else {
-//         imgToggle.classList.add("hidden")
-//     }
-// }
 
 // Store name in LS so that we know "who is voting"
 function storeNameInLS() {
@@ -87,10 +73,7 @@ function storeNameInLS() {
 }
 
 // Pull results from Firestore
-async function getDataFromFirestore() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const path = urlParams.get('eventid');
-    
+async function getDataFromFirestore() {   
     if (path) {
         const docRef = doc(db, path, "event_details");
         const docSnap = await getDoc(docRef);
@@ -108,9 +91,20 @@ async function getDataFromFirestore() {
 
 // Display results from Firestore
 async function displayResultsFromFirestore(voteCategory, div) {
-    const whosAvailDoc = await getDoc(doc(db, "whosAvail"));
+    const docRef = doc(db, path, "whosAvail");
+    const whosAvailDoc = await getDoc(docRef);
     const allVotes = whosAvailDoc.data();
-    const categoryVotes = allVotes[voteCategory] || {};
+    const categoryVotes = {};
+
+    if (!whosAvailDoc.exists()) {
+        return;
+    }
+
+    Object.entries(allVotes).forEach(([name, votes]) => {
+        if (votes[voteCategory] === voteCategory) {
+            categoryVotes[name] = voteCategory;
+        }
+    });
 
     let resultText = "<br>Others that agree with you:<br>";
     Object.entries(categoryVotes).forEach(([name, vote]) => {
