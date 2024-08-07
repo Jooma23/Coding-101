@@ -1,6 +1,6 @@
 // Firebase crap
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { getFirestore, getDoc, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDUcJE1-2a84KGsAPZLvH_6VbzfyUCGo3Y",
@@ -18,6 +18,7 @@ const db = getFirestore(app);
 // Real stuff is below
 const voterName = document.getElementById("votername")
 const fieldsets = document.querySelectorAll('fieldset');
+const userName = storeNameInLS();
 
 for (let i = 0; i < fieldsets.length; i++) {
     fieldsets[i].addEventListener('click', function(event) {
@@ -28,6 +29,39 @@ for (let i = 0; i < fieldsets.length; i++) {
             }
         }
     });
+}
+
+// Handle radio button click event
+async function handleRadioClick(event) {
+    if (event.target.type === 'radio') {
+        const fieldset = event.currentTarget;
+        const div = fieldset.querySelector('div.hidden');
+        if (div) {
+            div.classList.remove('hidden');
+        }
+
+        const voteValue = event.target.value;
+        const voteCategory = event.target.name;
+
+        await updateVoteInFirestore(userName, voteCategory, voteValue);
+        await displayResultsFromFirestore(voteCategory, div);
+    }
+}
+
+// Update Firestore with user's vote
+async function updateVoteInFirestore(userName, voteCategory, voteValue) {
+    const docRef = doc(db, "whosAvail", userName);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        await updateDoc(docRef, {
+            [voteCategory]: voteValue
+        });
+    } else {
+        await setDoc(docRef, {
+            [voteCategory]: voteValue
+        });
+    }
 }
 
 // Global Show & Hide Toggle 
@@ -56,6 +90,7 @@ function storeNameInLS() {
         storedName = getName
     }
     voterName.innerHTML = `${storedName} is voting`
+    return storedName
 }
 
 // Pull results from Firestore
@@ -70,8 +105,6 @@ async function getDataFromFirestore() {
         if (docSnap.exists()) {
             const data = docSnap.data();
             document.getElementById("eventNameDisplay").textContent = `${data.eventName}`;
-            // document.getElementById("firstNumberDisplay").textContent = `Earliest start date was: ${data.firstNumber}`;
-            // document.getElementById("secondNumberDisplay").textContent = `Latest start date was: ${data.secondNumber}`;
         } else {
             document.body.innerHTML = "That event wasn't found";
         }
@@ -80,6 +113,22 @@ async function getDataFromFirestore() {
     }
 }
 
+// Display results from Firestore
+async function displayResultsFromFirestore(voteCategory, div) {
+    const whosAvailDoc = await getDoc(doc(db, "whosAvail"));
+    const allVotes = whosAvailDoc.data();
+    const categoryVotes = allVotes[voteCategory] || {};
+
+    let resultText = "<br>Others that agree with you:<br>";
+    Object.entries(categoryVotes).forEach(([name, vote]) => {
+        if (vote === voteCategory) {
+            resultText += `${name}<br>`;
+        }
+    });
+
+    div.innerHTML = resultText;
+}
+
 // Run the app
-storeNameInLS()
+getDataFromFirestore()
 
