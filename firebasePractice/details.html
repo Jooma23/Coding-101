@@ -69,13 +69,22 @@
         <br>
         </div>
     </fieldset>
-    <!-- <button id="showhideBtn">Show Results</button> -->
+    <br>
+    <fieldset>
+        <legend>Rollercoaster or Waterpark?</legend>
+        <div>
+          <input type="radio" id="funChoice1" name="fun" value="rollercoaster" />
+          <label for="funChoice1">Rollercoaster</label>
+          <input type="radio" id="funChoice2" name="fun" value="waterpark" />
+          <label for="funChoice2">Waterpark</label>
+        </div>
+        <div class="hidden">
+        <br>
+            Others that agree with you:
+        <br>
+        </div>
+    </fieldset>
 <script type="module" src="./details.js">
 </script>
 </body>
 </html>
-
-<!-- What is not working yet: 
-- When a user changes vote, the firestore is appending it to the category, instead of replacing it. So index correctly, but append instead of replace.
-- Probably refactor the voting storage piece 
-- The InnerHTML is not updating dynamically -->

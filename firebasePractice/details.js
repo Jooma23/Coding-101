@@ -103,6 +103,18 @@ async function updateVoteInFirestore(userName, categoryName, newVoteValue) {
     }
 }
 
+// Disable re-voting
+const radios = document.querySelectorAll('input[type="radio"]');
+
+  radios.forEach(radio => {
+    radio.addEventListener('click', () => {
+      const radioName = radio.name;
+      document.querySelectorAll(`input[name="${radioName}"]`).forEach(r => {
+        r.disabled = true;
+      });
+    });
+  });
+
 // Others that agree with you logic
 // async function othersThatAgree(voteValue, div, categoryName) {
 //     const docRef = doc(db, path, "whosAvail");
@@ -135,3 +147,12 @@ async function updateVoteInFirestore(userName, categoryName, newVoteValue) {
 
 getDataFromFirestore()
 
+/*
+
+What is not working yet: 
+- When a user changes vote, the firestore is appending it to the category, instead of replacing it. So index correctly, but append instead of replace.
+- Probably refactor the voting storage piece 
+- Alternately, disable voting changes for now - done
+- The InnerHTML is not updating dynamically
+
+*/
