@@ -22,7 +22,24 @@ const userName = storeNameInLS();
 const urlParams = new URLSearchParams(window.location.search);
 const path = urlParams.get('eventid');
 
-// Store name in LS so that we know "who is voting"
+// Find the event via it's path from Firestore
+async function getDataFromFirestore() {   
+    if (path) {
+        const docRef = doc(db, path, "event_details");
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            document.getElementById("eventNameDisplay").textContent = `${data.eventName}`;
+        } else {
+            document.body.innerHTML = "That event wasn't found";
+        }
+    } else {
+        document.body.innerHTML = "Which event are you looking for?";
+    }
+}
+
+// [Repeatable] Immediately prompt and store name in LS so that we know "who is voting"
 function storeNameInLS() {
     let storedName = localStorage.getItem("username") 
     if (!storedName) {
@@ -34,23 +51,27 @@ function storeNameInLS() {
     return storedName
 }
 
-// Handle radio button click event
+// Adding click events to all fieldsets
 for (let i = 0; i < fieldsets.length; i++) {
     fieldsets[i].addEventListener('click', handleRadioClick)
 }
+
+// If the fieldsets are radios, unhide the text under it with updated FS values
 async function handleRadioClick(event) {
-    if (event.target.type === 'radio') {
-        const fieldset = event.currentTarget;
-        const div = fieldset.querySelector('div.hidden');
+    const fieldset = event.currentTarget
+    const div = fieldset.querySelector('div.hidden')
+    const voteValue = event.target.value
+    const categoryName = event.target.name
+    
+    if (event.target.type === 'radio') {    
         if (div) {
             div.classList.remove('hidden');
         }
-        const voteValue = event.target.value;
-        const categoryName = event.target.name; // Get category name from the radio button
-        await updateVoteInFirestore(userName, categoryName, voteValue);
-        await displayResultsFromFirestore(voteValue, div, categoryName);
+        await updateVoteInFirestore(userName, categoryName, voteValue)
+        await othersThatAgree(voteValue, div, categoryName)
     }
 }
+
 
 async function updateVoteInFirestore(userName, categoryName, newVoteValue) {
     const docRef = doc(db, path, "whosAvail");
@@ -83,25 +104,9 @@ async function updateVoteInFirestore(userName, categoryName, newVoteValue) {
 }
 
 
-// Pull event name from Firestore
-async function getDataFromFirestore() {   
-    if (path) {
-        const docRef = doc(db, path, "event_details");
-        const docSnap = await getDoc(docRef);
 
-        if (docSnap.exists()) {
-            const data = docSnap.data();
-            document.getElementById("eventNameDisplay").textContent = `${data.eventName}`;
-        } else {
-            document.body.innerHTML = "That event wasn't found";
-        }
-    } else {
-        document.body.innerHTML = "Which event are you looking for?";
-    }
-}
-
-// Display results from Firestore
-async function displayResultsFromFirestore(voteValue, div, categoryName) {
+// Others that agree with you logic
+async function othersThatAgree(voteValue, div, categoryName) {
     const docRef = doc(db, path, "whosAvail");
     const whosAvailDoc = await getDoc(docRef);
     const allVotes = whosAvailDoc.data();
@@ -120,7 +125,7 @@ async function displayResultsFromFirestore(voteValue, div, categoryName) {
     let resultText = "<br>Others that agree with you:<br>";
     Object.entries(categoryVotes).forEach(([name, votes]) => {
         if (votes.includes(voteValue)) {
-            resultText += `${name}<br>`;
+            resultText += `${name}, <br>`;
         }
     });
 

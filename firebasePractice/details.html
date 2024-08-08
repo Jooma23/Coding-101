@@ -7,12 +7,12 @@
 </head>
 <link href="./styles.css" rel="stylesheet">
 <body>
-    <h2>Help me learn javascript.</h2>
+    <h2>Help jooma learn javascript.</h2>
     <h3 id="eventNameDisplay"></h3>
     <p id="votername"></p>
     <br>
     <fieldset>
-        <legend>The better pet is?</legend>
+        <legend>The superior pet is?</legend>
         <div>
           <input type="radio" id="petChoice1" name="pet" value="cat" />
           <label for="petChoice1">Cat</label>
@@ -26,7 +26,7 @@
     </fieldset>
     <br>
     <fieldset>
-        <legend>Pineapples on Pizza?</legend>
+        <legend>Pineapples on pizza?</legend>
         <div>
           <input type="radio" id="pizzaChoice1" name="pizza" value="fine" />
           <label for="pizzaChoice1">It's fine</label>
@@ -41,12 +41,27 @@
     </fieldset>
     <br>
     <fieldset>
-        <legend>Hot coffee or Ice Coffee:</legend>
+        <legend>Hot coffee or iced coffee:</legend>
         <div>
           <input type="radio" id="coffeeChoice1" name="coffee" value="hot" />
           <label for="coffeeChoice1">Hot</label>
           <input type="radio" id="coffeeChoice2" name="coffee" value="ice" />
           <label for="coffeeChoice2">Iced</label>
+        </div>
+        <div class="hidden">
+        <br>
+            Others that agree with you:
+        <br>
+        </div>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Wine or beer:</legend>
+        <div>
+          <input type="radio" id="drinkChoice1" name="drink" value="wine" />
+          <label for="drinkChoice1">Wine</label>
+          <input type="radio" id="drinkChoice2" name="drink" value="beer" />
+          <label for="drinkChoice2">Beer</label>
         </div>
         <div class="hidden">
         <br>
@@ -62,4 +77,5 @@
 
 <!-- What is not working yet: 
 - When a user changes vote, the firestore is appending it to the category, instead of replacing it. So index correctly, but append instead of replace.
+- Probably refactor the voting storage piece 
 - The InnerHTML is not updating dynamically -->
