@@ -72,7 +72,7 @@ async function handleRadioClick(event) {
     }
 }
 
-
+// Voting logic
 async function updateVoteInFirestore(userName, categoryName, newVoteValue) {
     const docRef = doc(db, path, "whosAvail");
     const docSnap = await getDoc(docRef);
@@ -103,36 +103,35 @@ async function updateVoteInFirestore(userName, categoryName, newVoteValue) {
     }
 }
 
-
-
 // Others that agree with you logic
-async function othersThatAgree(voteValue, div, categoryName) {
-    const docRef = doc(db, path, "whosAvail");
-    const whosAvailDoc = await getDoc(docRef);
-    const allVotes = whosAvailDoc.data();
-    const categoryVotes = {};
+// async function othersThatAgree(voteValue, div, categoryName) {
+//     const docRef = doc(db, path, "whosAvail");
+//     const whosAvailDoc = await getDoc(docRef);
+//     const allVotes = whosAvailDoc.data();
+//     const categoryVotes = {};
 
-    if (!whosAvailDoc.exists()) {
-        return;
-    }
+//     if (!whosAvailDoc.exists()) {
+//         return;
+//     }
 
-    Object.entries(allVotes).forEach(([name, votes]) => {
-        if (votes[categoryName] && votes[categoryName].includes(voteValue)) {
-            categoryVotes[name] = votes[categoryName];
-        }
-    });
+//     Object.entries(allVotes).forEach(([name, votes]) => {
+//         if (votes[categoryName] && votes[categoryName].includes(voteValue)) {
+//             categoryVotes[name] = votes[categoryName];
+//         }
+//     });
 
-    let resultText = "<br>Others that agree with you:<br>";
-    Object.entries(categoryVotes).forEach(([name, votes]) => {
-        if (votes.includes(voteValue)) {
-            resultText += `${name}, <br>`;
-        }
-    });
+//     let resultText = "<br>Others that agree with you:<br>";
+//     Object.entries(categoryVotes).forEach(([name, votes]) => {
+//         if (votes.includes(voteValue)) {
+//             resultText += `- ${name}<br>`;
+//         }
+//     });
 
-    div.innerHTML = resultText;
-}
+//     div.innerHTML = resultText;
+// }
 
 
 // Run the app
+
 getDataFromFirestore()
 
